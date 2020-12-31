@@ -1,6 +1,7 @@
 const { Command } = require('discord-akairo');
 const TikTokScraper = require('tiktok-scraper');
 const { MessageEmbed } = require('discord.js');
+const list = require('../../bot')
 
 class TTProfileCommand extends Command {
     constructor() {
@@ -42,33 +43,33 @@ class TTProfileCommand extends Command {
     }
 
     async exec(message, args) {
-        (async () => {
-            try {
-                const user = await TikTokScraper.getUserProfileInfo(args.user, {
-                    proxy: ['45.94.47.127:80', '45.130.255.158:80', '193.8.56.222:80', '185.95.157.57:80', '45.86.15.38:80']
-                });
-                console.log(user)
-                const embed = new MessageEmbed()
-                    .setAuthor(`Overview for: ${args.user}`, user.user.avatarThumb)
-                    .addFields(
-                        { name: `Following:`, value: user.stats.followingCount, inline: true},
-                        { name: "Followers:", value: user.stats.followerCount, inline: true},
-                        { name: "Likes:", value: user.stats.heartCount, inline: true},
-                        { name: "Bio:", value: user.user.signature || "No bio available", inline: true},
-                        { name: "Videos:", value: user.stats.videoCount, inline: true},
-                        { name: "Link:", value: `[Click Here to Jump](https://www.tiktok.com/@${args.user})`, inline: true}
-                    )
-                    .setColor("2f3136")
-                    .setTimestamp()
-                message.util.send(embed)
-        } catch (error) {
+        const array = list.list()
+        try {
+            const user = await TikTokScraper.getUserProfileInfo(args.user, {
+                proxy: array,
+                sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
+            });
+            console.log(user)
             const embed = new MessageEmbed()
-                .setDescription(`\`Could not find the user.\``)
+                .setAuthor(`Overview for: ${args.user}`, user.user.avatarThumb)
+                .addFields(
+                    { name: `Following:`, value: user.stats.followingCount, inline: true},
+                    { name: "Followers:", value: user.stats.followerCount, inline: true},
+                    { name: "Likes:", value: user.stats.heartCount, inline: true},
+                    { name: "Bio:", value: user.user.signature || "No bio available", inline: true},
+                    { name: "Videos:", value: user.stats.videoCount, inline: true},
+                    { name: "Link:", value: `[Click Here to Jump](https://www.tiktok.com/@${args.user})`, inline: true}
+                )
                 .setColor("2f3136")
+                .setTimestamp()
             message.util.send(embed)
-            console.log(error)
-        }
-        })();
+    } catch (error) {
+        const embed = new MessageEmbed()
+            .setDescription(`\`Could not find the user.\``)
+            .setColor("2f3136")
+        message.util.send(embed)
+        console.log(error)
+    }
     }
 }
 

@@ -1,6 +1,7 @@
 const { Command } = require('discord-akairo');
 const TikTokScraper = require('tiktok-scraper');
 const { MessageEmbed } = require('discord.js');
+const list = require('../../bot')
 
 class TTRecentPostCommand extends Command {
     constructor() {
@@ -42,25 +43,25 @@ class TTRecentPostCommand extends Command {
     }
 
     async exec(message, args) {
-        (async () => {
-            try {
-                const posts = await TikTokScraper.user(args.user, { 
-                    number: 1, 
-                    sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
-                    proxy: ['45.94.47.127:80', '45.130.255.158:80', '193.8.56.222:80', '185.95.157.57:80', '45.86.15.38:80']
-                });
-                console.log(posts)
-                const embed = new MessageEmbed()
-                    .setAuthor( `TikTok: ${posts.collector[0].authorMeta.name}`,  `${posts.collector[0].authorMeta.avatar}`)
-                    .addFields(
-                        { name:"Caption:", value: posts.collector[0].text || "No caption available", inline: false },
-                    )
-                    .setTitle(`${posts.collector[0].authorMeta.name}'s latest TikTok!`)
-                    .setThumbnail(`${posts.collector[0].covers.default}`)
-                    .setTimestamp()
-                    .setURL(`${posts.collector[0].webVideoUrl}`)
-                    .setColor("2f3136")
-                message.util.send(embed);
+        const array = list.list()
+        try {
+            const posts = await TikTokScraper.user(args.user, { 
+                number: 1, 
+                sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
+                proxy: array
+            });
+            console.log(posts)
+            const embed = new MessageEmbed()
+                .setAuthor( `TikTok: ${posts.collector[0].authorMeta.name}`,  `${posts.collector[0].authorMeta.avatar}`)
+                .addFields(
+                    { name:"Caption:", value: posts.collector[0].text || "No caption available", inline: false },
+                )
+                .setTitle(`${posts.collector[0].authorMeta.name}'s latest TikTok!`)
+                .setThumbnail(`${posts.collector[0].covers.default}`)
+                .setTimestamp()
+                .setURL(`${posts.collector[0].webVideoUrl}`)
+                .setColor("2f3136")
+            message.util.send(embed);
         } catch (error) {
             const embed = new MessageEmbed()
                 .setDescription(`\`Could not find the user.\``)
@@ -68,7 +69,6 @@ class TTRecentPostCommand extends Command {
             message.util.send(embed)
             console.log(error)
         }
-        })();
     }
 }
 

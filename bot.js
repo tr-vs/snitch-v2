@@ -8,6 +8,24 @@ const parseDuration = require('parse-duration');
 const { default: parse } = require('parse-duration');
 const TikTokScraper = require('tiktok-scraper');
 const channels = require('./models/tiktokPostNotifs')
+const fetch = require('node-fetch')
+
+let proxies= []
+async function proxy() {
+    const response = await fetch('https://proxy.webshare.io/api/proxy/list/', { // url is the direct video url
+        method: 'GET',
+        headers: {"Authorization": "Token 7434f7f5c77af175b5024dd388f38d4494100c21"}
+    }).then(r=> r.json())
+    const list = response.results
+    for (var i = 1; i<list.length; i++) {
+        proxies.push(list[i].proxy_address+":80")
+    }
+}
+proxy()
+setInterval(proxy, 3540000)
+module.exports.list = () => {
+    return proxies
+}
 
 class MyClient extends AkairoClient {
     constructor() {
@@ -90,7 +108,10 @@ class MyClient extends AkairoClient {
         this.commandHandler.resolver.addType('tiktokUser', async (message, phrase) => {
             if (!phrase) return null;
             try {
-                const user = await TikTokScraper.getUserProfileInfo(phrase);
+                const user = await TikTokScraper.getUserProfileInfo(phrase,{
+                    proxy: proxies,
+                    sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
+                });
                 return user
             } catch (error) {
                 console.log(error)
@@ -134,14 +155,18 @@ class MyClient extends AkairoClient {
 
 const client = new MyClient();
 
-/*module.exports.check = async () => {
+module.exports.check = async () => {
     const list = await channels.find().lean()
     list.forEach((element) => {
         
         let channel = client.channels.cache.get(element.channelID)
         async function scraper() {
             try {
-                let posts = await TikTokScraper.user(element.user, { number: 1 });
+                let posts = await TikTokScraper.user(element.user, {
+                    proxy: proxies,
+                    sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
+                    number: 1
+                });
                 const embed = new MessageEmbed()
                     .setAuthor( `${posts.collector[0].authorMeta.name}`,  `${posts.collector[0].authorMeta.avatar}`)
                     .addFields(
@@ -177,7 +202,7 @@ const client = new MyClient();
         scraper();
     })
     
-}*/
+}
 
 client.snipes = new Map();
 client.edits = new Map();
