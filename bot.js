@@ -22,7 +22,6 @@ async function proxy() {
         initial.push(list[i].proxy_address+":80")
     }
     proxies = initial
-    console.log(proxies)
 }
 proxy()
 setInterval(proxy, 300000)

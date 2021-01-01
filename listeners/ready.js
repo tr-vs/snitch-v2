@@ -11,16 +11,17 @@ class ReadyListener extends Listener {
     }
 
     async exec() {
-        await timestamp.updateMany({}, {
-            updateTime: Math.floor(Date.now() / 1000)
-        })
         console.log('I\'m ready!');
         setInterval(() => {
             let membersCount = this.client.guilds.cache.map(guild => guild.memberCount).reduce((a, b) => a + b, 0)
             this.client.user.setActivity(` over ${membersCount} members`, {type: "WATCHING"});
         }, 1000 * 60);
+        /*await timestamp.updateMany({}, {
+            updateTime: Math.floor(Date.now() / 1000)
+        })
+        
         check.check()
-        setInterval(check.check, 300000);
+        setInterval(check.check, 300000);*/
     }
 
 }

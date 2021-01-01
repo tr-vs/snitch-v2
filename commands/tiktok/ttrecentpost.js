@@ -44,7 +44,6 @@ class TTRecentPostCommand extends Command {
 
     async exec(message, args) {
         const array = list.list()
-        console.log(array)
         try {
             const posts = await TikTokScraper.user(args.user, { 
                 number: 1, 
