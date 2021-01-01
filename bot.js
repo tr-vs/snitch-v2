@@ -17,9 +17,10 @@ async function proxy() {
         headers: {"Authorization": "Token 7434f7f5c77af175b5024dd388f38d4494100c21"}
     }).then(r=> r.json())
     const list = response.results
-    for (var i = 1; i<list.length; i++) {
+    for (var i = 0; i<list.length; i++) {
         proxies.push(list[i].proxy_address+":80")
     }
+    console.log(proxies)
 }
 proxy()
 setInterval(proxy, 3540000)
@@ -67,7 +68,6 @@ class MyClient extends AkairoClient {
                 if (Array.isArray(entry)) {
                     if (entry.some((t) => t.toLowerCase() === subcommand.toLowerCase())) {
                         const name = `${command} ${subcommand}`;
-                        console.log("hi")
                         return {
                             name,
                             command: isSubcommand(message, entry[0]),
@@ -177,11 +177,10 @@ module.exports.check = async () => {
                     .setTimestamp()
                     .setURL(`${posts.collector[0].webVideoUrl}`)
                     .setColor("#2f3136")
-                console.log(element.updateTime)
-                console.log(posts.collector[0].createTime)
                 if (element.updateTime < posts.collector[0].createTime) {
                     channel.send(embed)
                     channel.send(`||<@&${element.roleID}>||`)
+                    console.log("sent " + posts.collector[0].authorMeta.name)
                     await channels.updateOne(
                         {
                             guildID: element.guildID,

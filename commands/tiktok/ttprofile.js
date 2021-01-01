@@ -49,7 +49,6 @@ class TTProfileCommand extends Command {
                 proxy: array,
                 sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
             });
-            console.log(user)
             const embed = new MessageEmbed()
                 .setAuthor(`Overview for: ${args.user}`, user.user.avatarThumb)
                 .addFields(
