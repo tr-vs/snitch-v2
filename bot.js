@@ -17,13 +17,15 @@ async function proxy() {
         headers: {"Authorization": "Token 7434f7f5c77af175b5024dd388f38d4494100c21"}
     }).then(r=> r.json())
     const list = response.results
+    let initial = [];
     for (var i = 0; i<list.length; i++) {
-        proxies.push(list[i].proxy_address+":80")
+        initial.push(list[i].proxy_address+":80")
     }
+    proxies = initial
     console.log(proxies)
 }
 proxy()
-setInterval(proxy, 3540000)
+setInterval(proxy, 300000)
 module.exports.list = () => {
     return proxies
 }
