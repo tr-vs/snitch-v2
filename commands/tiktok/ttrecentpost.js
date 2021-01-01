@@ -50,7 +50,6 @@ class TTRecentPostCommand extends Command {
                 sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
                 proxy: array
             });
-            console.log(posts)
             const embed = new MessageEmbed()
                 .setAuthor( `TikTok: ${posts.collector[0].authorMeta.name}`,  `${posts.collector[0].authorMeta.avatar}`)
                 .addFields(

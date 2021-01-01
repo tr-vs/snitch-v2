@@ -165,7 +165,9 @@ module.exports.check = async () => {
                 let posts = await TikTokScraper.user(element.user, {
                     proxy: proxies,
                     sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
-                    number: 1
+                    number: 1,
+                    asyncDownload: 1,
+                    asyncScraping: 1,
                 });
                 const embed = new MessageEmbed()
                     .setAuthor( `${posts.collector[0].authorMeta.name}`,  `${posts.collector[0].authorMeta.avatar}`)
@@ -195,7 +197,7 @@ module.exports.check = async () => {
                     )
                 }
             } catch (error) {
-                return error;
+                console.log(error) ;
             }
         };
         scraper();
