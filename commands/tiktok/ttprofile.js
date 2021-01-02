@@ -46,7 +46,6 @@ class TTProfileCommand extends Command {
         const array = list.list()
         try {
             const user = await TikTokScraper.getUserProfileInfo(args.user, {
-                proxy: array,
                 sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
             });
             const embed = new MessageEmbed()

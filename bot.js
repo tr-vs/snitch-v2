@@ -10,25 +10,6 @@ const TikTokScraper = require('tiktok-scraper');
 const channels = require('./models/tiktokPostNotifs')
 const fetch = require('node-fetch')
 
-let proxies= []
-async function proxy() {
-    const response = await fetch('https://proxy.webshare.io/api/proxy/list/', { // url is the direct video url
-        method: 'GET',
-        headers: {"Authorization": "Token 7434f7f5c77af175b5024dd388f38d4494100c21"}
-    }).then(r=> r.json())
-    const list = response.results
-    let initial = [];
-    for (var i = 0; i<list.length; i++) {
-        initial.push(list[i].proxy_address+":80")
-    }
-    proxies = initial
-}
-proxy()
-setInterval(proxy, 300000)
-module.exports.list = () => {
-    return proxies
-}
-
 class MyClient extends AkairoClient {
     constructor() {
         super({
@@ -164,7 +145,6 @@ module.exports.check = async () => {
         async function scraper() {
             try {
                 let posts = await TikTokScraper.user(element.user, {
-                    proxy: proxies,
                     sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
                     number: 1,
                     asyncDownload: 1,
