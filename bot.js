@@ -178,7 +178,6 @@ module.exports.check = async () => {
                     )
                 }
             } catch (error) {
-                console.log(error) ;
             }
         };
         scraper();

@@ -1,7 +1,6 @@
 const { Command } = require('discord-akairo');
 const TikTokScraper = require('tiktok-scraper');
 const { MessageEmbed } = require('discord.js');
-const list = require('../../bot')
 
 class TTRecentPostCommand extends Command {
     constructor() {
@@ -43,7 +42,6 @@ class TTRecentPostCommand extends Command {
     }
 
     async exec(message, args) {
-        const array = list.list()
         try {
             const posts = await TikTokScraper.user(args.user, { 
                 number: 1, 

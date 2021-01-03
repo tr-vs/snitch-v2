@@ -1,7 +1,6 @@
 const { Command } = require('discord-akairo');
 const TikTokScraper = require('tiktok-scraper');
 const { MessageEmbed } = require('discord.js');
-const list = require('../../bot')
 
 class TTProfileCommand extends Command {
     constructor() {
@@ -43,7 +42,6 @@ class TTProfileCommand extends Command {
     }
 
     async exec(message, args) {
-        const array = list.list()
         try {
             const user = await TikTokScraper.getUserProfileInfo(args.user, {
                 sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
