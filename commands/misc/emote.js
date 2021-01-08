@@ -9,8 +9,8 @@ class EmoteCommand extends Command {
             aliases: ['emote', 'e'],
             category: 'Misc',
             description : {
-                content : 'Generate an invite link for the bot.',
-                usage : ['invite', 'inv']
+                content : 'Enlarge an emote to save it if you\'re on mobile.',
+                usage : ['emote [emote]', 'e [emote]']
             },
             args: [ 
                 {
