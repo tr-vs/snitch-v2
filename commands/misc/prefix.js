@@ -12,11 +12,11 @@ class PrefixCommand extends Command {
                     id: 'prefix',
                     prompt: {
                         timeout: message => {
-                            const embed = new MessageEmbed().setDescription(`'Time ran out, command has been cancelled.'`).setColor('2f3136')
+                            const embed = new MessageEmbed().setDescription(`\`Time ran out, command has been cancelled.\``).setColor('2f3136')
                             return embed
                         },
                         ended: message => {
-                            const embed = new MessageEmbed().setDescription(`'Too many retries, command has been cancelled.'`).setColor('2f3136')
+                            const embed = new MessageEmbed().setDescription(`\`Too many retries, command has been cancelled.\``).setColor('2f3136')
                             return embed
                         },
                         cancel: message => {

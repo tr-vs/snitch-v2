@@ -14,7 +14,7 @@ class RoleCommand extends Command {
                     type: 'role',
                     prompt: {
                         timeout: message => {
-                            const embed = new MessageEmbed().setDescription(`'Time ran out, command has been cancelled.'`).setColor('2f3136')
+                            const embed = new MessageEmbed().setDescription(`\`Time ran out, command has been cancelled.\``).setColor('2f3136')
                             return embed
                         },
                         ended: message => {
