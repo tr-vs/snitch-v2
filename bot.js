@@ -15,7 +15,8 @@ class MyClient extends AkairoClient {
         super({
             ownerID: '281604477457399818',
         }, {
-            disableMentions: 'everyone'
+            disableMentions: 'everyone',
+             fetchAllMembers: true,
         });
         this.commandHandler = new CommandHandler(this, {
             directory: './commands/',

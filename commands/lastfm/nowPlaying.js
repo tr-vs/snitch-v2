@@ -29,6 +29,9 @@ class NowPlayingCommand extends Command {
         const settings = await LastFMUser.findOne({
             authorID: id
         });
+        const userOBJ = await this.client.users.fetch(id)
+        let tag= userOBJ.tag
+        let authorAv= userOBJ.displayAvatarURL({dynamic: true, size: 256})
         if (settings == null) {
             const embed = new MessageEmbed()
                 .setDescription("`No connected Last.FM account found.`")
@@ -43,8 +46,6 @@ class NowPlayingCommand extends Command {
             limit: 1
         })
         const result = await fetch(`https://ws.audioscrobbler.com/2.0/?${params}`).then(r=> r.json().then(async function(data) {
-            let tag= message.author.tag
-            let authorAv= message.author.displayAvatarURL({dynamic: true, size: 256})
             if(!data.recenttracks) {
                 const embed = new MessageEmbed()
                     .setDescription("Songs have not been detected ***yet***")
@@ -70,7 +71,7 @@ class NowPlayingCommand extends Command {
             
             if(final.track == undefined) {
                 const embed = new MessageEmbed()
-                    .setAuthor(`Requested by ${tag}`, authorAv)
+                    .setAuthor(`${tag} is currently listening to:`, authorAv)
                     .addFields(
                         { name:"Name:", value: `*[${name}](${trackurl})*`, inline: true},
                         { name:"Artist:", value: `*[${artist}](${artisturl})*`, inline: true }

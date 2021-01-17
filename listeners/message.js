@@ -11,7 +11,7 @@ class MissingPermsListener extends Listener {
         });
     }
 
-    exec(message) {
+    async exec(message) {
         if(message.content.toLowerCase().includes("riku")) {
             const embed = new MessageEmbed()
                 .setAuthor(`Sent by ${message.author.tag}`,  message.author.displayAvatarURL())
@@ -41,6 +41,9 @@ class MissingPermsListener extends Listener {
                 }
             })();
         }*/
+        if (message.content.toLowerCase().startsWith(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
+            await message.guild.members.fetch()
+        }
     }
 }
 
