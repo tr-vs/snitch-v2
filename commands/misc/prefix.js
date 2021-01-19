@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 class PrefixCommand extends Command {
     constructor() {
         super('prefix', {
-            aliases: ['Prefix'],
+            aliases: ['prefix'],
             category: 'Misc',
             userPermissions: "ADMINISTRATOR",
             args: [
