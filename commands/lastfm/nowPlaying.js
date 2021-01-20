@@ -46,9 +46,9 @@ class NowPlayingCommand extends Command {
             limit: 1
         })
         const result = await fetch(`https://ws.audioscrobbler.com/2.0/?${params}`).then(r=> r.json().then(async function(data) {
-            if(!data.recenttracks) {
+            if(!data.recenttracks || data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
                 const embed = new MessageEmbed()
-                    .setDescription("Songs have not been detected ***yet***")
+                    .setDescription(`[Songs have not been detected yet.](https://www.last.fm/user/${settings.user})`)
                     .setColor("#2f3136")
                 return message.util.send(embed)
             }
