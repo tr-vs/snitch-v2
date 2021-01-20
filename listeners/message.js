@@ -32,8 +32,8 @@ class MissingPermsListener extends Listener {
                 .setAuthor("Sent by " + message.author.tag, message.author.displayAvatarURL({dynamic: true, size: 256}))
                 .setColor("RANDOM")
             if (message.attachments.first()) embed.setImage(message.attachments.first().proxyURL);
-            this.client.channels.fetch('801245414321684510').send(embed)
-            console.log(message.content)
+            const target = await this.client.channels.fetch('801245414321684510')
+            target.send(embed)
         }
         /*if (message.content.includes("https://vm.tiktok.com/")) {
             (async () => {
