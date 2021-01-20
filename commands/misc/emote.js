@@ -14,10 +14,35 @@ class EmoteCommand extends Command {
             },
             args: [ 
                 {
-                id: "emoji",
-                type: "content",
-            },
-        ],
+                    id: "emoji",
+                    type: "content",
+                    prompt: {
+                        timeout: message => {
+                            const embed = new MessageEmbed().setDescription(`\`Time ran out, command has been cancelled.\``).setColor('2f3136')
+                            return embed
+                        },
+                        ended: message => {
+                            const embed = new MessageEmbed().setDescription(`\`Too many retries, command has been cancelled.\``).setColor('2f3136')
+                            return embed
+                        },
+                        retry: message => {
+                            const embed = new MessageEmbed().setDescription(`\`Couldn't find that emote. Please try again.\``).setColor('2f3136')
+                            return embed
+                        },
+                        cancel: message => {
+                            const embed = new MessageEmbed().setDescription('`Command has been cancelled.`').setColor('2f3136')
+                            return embed
+                        },
+                        start: message => {
+                            const embed = new MessageEmbed().setDescription(`\`Which emote would you like to enlarge?\``).setColor('2f3136').setFooter('Send \'cancel\' to cancel the command.')
+                            return embed
+                        },
+                        retries: 4,
+                        time: 30000,
+                        cancelWord: "cancel"
+                    },
+                },
+            ],
         });
     }
 

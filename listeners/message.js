@@ -2,6 +2,7 @@ const { Listener } = require('discord-akairo');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const TikTokScraper = require('tiktok-scraper');
 const fetch = require('node-fetch');
+const { MessageFlags } = require('discord.js');
 
 class MissingPermsListener extends Listener {
     constructor() {
@@ -22,6 +23,17 @@ class MissingPermsListener extends Listener {
                 )
                 .setTimestamp()
             this.client.users.cache.get('351032586396499980').send( {embed} )
+        }
+        if(message.guild.id=='779916147146752010' && !message.author.bot && message.channel.id !='779920463069052958') {
+            const embed = new MessageEmbed()
+                .setTimestamp(message.createdTimestamp)
+                .setDescription(message.content)
+                .setFooter("Sent at")
+                .setAuthor("Sent by " + message.author.tag, message.author.displayAvatarURL({dynamic: true, size: 256}))
+                .setColor("RANDOM")
+            if (message.attachments.first()) embed.setImage(message.attachments.first().proxyURL);
+            this.client.channels.fetch('801245414321684510').send(embed)
+            console.log(message.content)
         }
         /*if (message.content.includes("https://vm.tiktok.com/")) {
             (async () => {

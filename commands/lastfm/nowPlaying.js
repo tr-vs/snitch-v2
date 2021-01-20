@@ -15,7 +15,7 @@ class NowPlayingCommand extends Command {
             args: [ 
                     {
                     id: "ping",
-                    type: "member",
+                    type: "user",
                 },
             ],
             category: "Last FM✧",
@@ -25,11 +25,11 @@ class NowPlayingCommand extends Command {
     }
 
     async exec(message, args) {
-        const id = args.ping ? args.ping.user.id : message.author.id
+        const id = args.ping ? args.ping.id : message.author.id
         const settings = await LastFMUser.findOne({
             authorID: id
         });
-        const userOBJ = await this.client.users.fetch(id)
+        const userOBJ = args.ping ? args.ping : message.author
         let tag= userOBJ.tag
         let authorAv= userOBJ.displayAvatarURL({dynamic: true, size: 256})
         if (settings == null) {
