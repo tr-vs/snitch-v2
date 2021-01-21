@@ -1,16 +1,16 @@
 const { Listener } = require('discord-akairo');
 
 class CommandBlockedListener extends Listener {
-    constructor() {
-        super('commandBlocked', {
-            emitter: 'commandHandler',
-            event: 'commandBlocked'
-        });
-    }
+	constructor() {
+		super('commandBlocked', {
+			emitter: 'commandHandler',
+			event: 'commandBlocked',
+		});
+	}
 
-    exec(message, command, reason) {
-        console.log(`${message.author.username} was blocked from using ${command.id} because of ${reason}!`);
-    }
+	exec(message, command, reason) {
+		console.log(`${message.author.username} was blocked from using ${command.id} because of ${reason}!`);
+	}
 }
 
 module.exports = CommandBlockedListener;

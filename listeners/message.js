@@ -1,41 +1,38 @@
 const { Listener } = require('discord-akairo');
-const { MessageEmbed, MessageAttachment } = require('discord.js');
-const TikTokScraper = require('tiktok-scraper');
-const fetch = require('node-fetch');
-const { MessageFlags } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 class MissingPermsListener extends Listener {
-    constructor() {
-        super('message', {
-            emitter: 'client',
-            event: 'message'
-        });
-    }
+	constructor() {
+		super('message', {
+			emitter: 'client',
+			event: 'message',
+		});
+	}
 
-    async exec(message) {
-        if(message.content.toLowerCase().includes("riku")) {
-            const embed = new MessageEmbed()
-                .setAuthor(`Sent by ${message.author.tag}`,  message.author.displayAvatarURL())
-                .setTitle("Message Containing Riku:")
-                .addFields(
-                    { name:"Content:", value:message.content, inline: true },
-                    { name:"Link:", value: `[Click to jump to the message](${message.url})`, inline: true}
-                )
-                .setTimestamp()
-            this.client.users.cache.get('351032586396499980').send( {embed} )
-        }
-        if(message.guild.id=='779916147146752010' && !message.author.bot && message.channel.id !='779920463069052958') {
-            const embed = new MessageEmbed()
-                .setTimestamp(message.createdTimestamp)
-                .setDescription(message.content)
-                .setFooter("Sent at")
-                .setAuthor("Sent by " + message.author.tag, message.author.displayAvatarURL({dynamic: true, size: 256}))
-                .setColor("RANDOM")
-            if (message.attachments.first()) embed.setImage(message.attachments.first().proxyURL);
-            const target = await this.client.channels.fetch('801245414321684510')
-            target.send(embed)
-        }
-        /*if (message.content.includes("https://vm.tiktok.com/")) {
+	async exec(message) {
+		if(message.content.toLowerCase().includes('riku')) {
+			const embed = new MessageEmbed()
+				.setAuthor(`Sent by ${message.author.tag}`, message.author.displayAvatarURL())
+				.setTitle('Message Containing Riku:')
+				.addFields(
+					{ name:'Content:', value:message.content, inline: true },
+					{ name:'Link:', value: `[Click to jump to the message](${message.url})`, inline: true },
+				)
+				.setTimestamp();
+			this.client.users.cache.get('351032586396499980').send({ embed });
+		}
+		if(message.guild.id == '779916147146752010' && !message.author.bot && message.channel.id != '779920463069052958') {
+			const embed = new MessageEmbed()
+				.setTimestamp(message.createdTimestamp)
+				.setDescription(message.content)
+				.setFooter('Sent in #' + message.channel.name)
+				.setAuthor('Sent by ' + message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 256 }))
+				.setColor('RANDOM');
+			if (message.attachments.first()) embed.setImage(message.attachments.first().proxyURL);
+			const target = await this.client.channels.fetch('801245414321684510');
+			target.send(embed);
+		}
+		/* if (message.content.includes("https://vm.tiktok.com/")) {
             (async () => {
                 try {
                     const videoMeta = await TikTokScraper.getVideoMeta(message.content);
@@ -53,10 +50,10 @@ class MissingPermsListener extends Listener {
                 }
             })();
         }*/
-        if (message.content.toLowerCase().startsWith(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
-            await message.guild.members.fetch()
-        }
-    }
+		if (message.content.toLowerCase().startsWith(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
+			await message.guild.members.fetch();
+		}
+	}
 }
 
 module.exports = MissingPermsListener;
