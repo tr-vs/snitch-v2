@@ -13,10 +13,13 @@ class ReadyListener extends Listener {
 
 	async exec() {
 		console.log('I\'m ready!');
-		setInterval(() => {
-			const membersCount = this.client.guilds.cache.map(guild => guild.memberCount).reduce((a, b) => a + b, 0);
-			this.client.user.setActivity(` over ${membersCount} members`, { type: 'WATCHING' });
-		}, 1000 * 60);
+		const activities = [
+			`${this.client.guilds.cache.size} servers...`,
+			`${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} members...`,
+		];
+
+		let i = 0;
+		setInterval(() => this.client.user.setActivity(`over ${activities[i++ % activities.length]}`, { type: 'WATCHING' }), 10000);
 		/* await timestamp.updateMany({}, {
             updateTime: Math.floor(Date.now() / 1000)
         })
