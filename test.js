@@ -1,3 +1,5 @@
-for (let x = 5; x < 12; x++) {
-	console.log(x + ' ');
+for (let i = 5; i > 1; i--) {
+	if (i == 2) {
+		console.log(i + ' ');
+	}
 }
