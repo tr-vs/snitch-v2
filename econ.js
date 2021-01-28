@@ -358,7 +358,7 @@ module.exports.shop = async (userID, guildID) => {
 	let pod = '';
 	let cost = '**Cost:** 10 Hits';
 	if (result.mango > 0) {
-		pod = 'You\'ve reached the end! DM egg#9999 suggestions for new upgrade paths. :)';
+		pod = 'You\'ve reached the end! Send suggestions for new upgrade paths in the support server. :)';
 	} else if (result.menthol > 0) {
 		pod = '<:mango:780309627412676608> **Mango Pod** | Perks: 4 min. cooldown for JUUL steal\n**Cost:** 100 Hits';
 	} else if (result.cucumber > 0) {

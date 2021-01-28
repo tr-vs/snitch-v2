@@ -110,6 +110,9 @@ class WhoKnowsTrackCommand extends Command {
 			return message.util.send(embed);
 		}
 		for (let i = 0; i < data2.length; i++) {
+			if (data2[i].track == undefined || data2[i].track.length == 0) {
+				continue;
+			}
 			const userplaycount = data2[i].track.userplaycount;
 			if (userplaycount !== '0' && userplaycount !== undefined) {
 				know1.push({

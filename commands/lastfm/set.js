@@ -65,6 +65,9 @@ class SetCommand extends Command {
 				return message.util.send(embed);
 			}
 		});
+		if (settings == null) {
+			return;
+		}
 		await settings.updateOne({
 			user: args.user,
 		});

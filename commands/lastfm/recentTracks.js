@@ -45,13 +45,16 @@ class NowPlayingCommand extends Command {
 		const tag = message.author.tag;
 		const authorAv = message.author.displayAvatarURL({ dynamic: true, size: 256 });
 		let response = '';
-		if(!data.recenttracks.track[0]) {
+		if(!data.recenttracks || data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
 			const embed = new MessageEmbed()
-				.setDescription('Songs have not been detected ***yet***')
+				.setDescription(`[Songs have not been detected yet.](https://www.last.fm/user/${settings.user})`)
 				.setColor('#2f3136');
 			return message.util.send(embed);
 		}
 		for (let i = 0; i < 10; i++) {
+			if (data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
+				continue;
+			}
 			const {
 				name: name,
 				url: url,

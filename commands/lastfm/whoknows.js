@@ -102,6 +102,9 @@ class WhoKnowsCommand extends Command {
 		const data2 = await Promise.all(request.map(u => fetch(u).then(resp => resp.json())));
 		// eslint-disable-next-line no-shadow
 		for (let i = 0; i < data2.length; i++) {
+			if (data2[i].artist == undefined || data2[i].artist.length == 0) {
+				continue;
+			}
 			const userplaycount = data2[i].artist.stats.userplaycount;
 			if (userplaycount !== '0' && userplaycount !== undefined) {
 				know1.push({

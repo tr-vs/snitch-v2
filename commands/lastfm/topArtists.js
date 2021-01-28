@@ -78,9 +78,9 @@ class TopArtistsCommand extends Command {
 		const tag = message.author.tag;
 		const authorAv = message.author.displayAvatarURL({ dynamic: true, size: 256 });
 		let response = '';
-		if(!data.topartists.artist[0]) {
+		if(!data.topartists || data.topartists.track[0] == undefined || data.topartists[0].length == 0) {
 			const embed = new MessageEmbed()
-				.setDescription('Artists have not been detected ***yet***')
+				.setDescription(`[Songs have not been detected yet.](https://www.last.fm/user/${settings.user})`)
 				.setColor('#2f3136');
 			return message.util.send(embed);
 		}

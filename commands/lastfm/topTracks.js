@@ -78,9 +78,9 @@ class TopTracksCommand extends Command {
 		const tag = message.author.tag;
 		const authorAv = message.author.displayAvatarURL({ dynamic: true, size: 256 });
 		let response = '';
-		if(!data.toptracks.track[0]) {
+		if(!data.toptracks.track[0] || data.toptracks.track[0] == undefined || data.toptracks.track[0].length == 0) {
 			const embed = new MessageEmbed()
-				.setDescription('Songs have not been detected ***yet***')
+				.setDescription(`[Songs have not been detected yet.](https://www.last.fm/user/${settings.user})`)
 				.setColor('#2f3136');
 			return message.util.send(embed);
 		}
