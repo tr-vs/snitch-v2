@@ -5,7 +5,7 @@ const urban = require('urban');
 class UDCommand extends Command {
 	constructor() {
 		super('urbandictionary', {
-			aliases: ['UrbanDictionary', 'ud'],
+			aliases: ['urbandictionary', 'ud'],
 			category: 'fun',
 			description : {
 				content : 'Provides a defintion from Urban Dictionary for any word',

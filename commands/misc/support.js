@@ -7,7 +7,7 @@ class SupportCommand extends Command {
 			aliases: ['support'],
 			category: 'Misc',
 			description : {
-				content : 'If you have any questions feel free to join the support server.',
+				content : 'If you have any questions, feel free to join the support server.',
 				usage : ['invite', 'inv'],
 			},
 		});

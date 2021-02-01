@@ -6,7 +6,7 @@ const Guild = require('../../models/guild');
 class ImageCommand extends Command {
     constructor() {
         super('image', {
-            aliases: ['Image', 'img'],
+            aliases: ['image', 'img'],
             category: 'util',
             description : {
                 content : 'Search for an image.',

@@ -5,7 +5,7 @@ const Guild = require('../../models/guild');
 class SnipeCommand extends Command {
 	constructor() {
 		super('snipe', {
-			aliases: ['Snipe', 's'],
+			aliases: ['snipe', 's'],
 			category: 'util',
 			description : {
 				content : 'View up to 3 recently deleted messages',

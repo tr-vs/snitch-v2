@@ -3,7 +3,7 @@ const { Command } = require('discord-akairo');
 class BallCommand extends Command {
 	constructor() {
 		super('magic8ball', {
-			aliases: ['Magic8Ball', '8Ball', 'Magic8'],
+			aliases: ['magic8ball', '8ball', 'magic8'],
 			category: 'fun',
 			description : {
 				content : 'Ask the bot a random question with a yes or no answer!',

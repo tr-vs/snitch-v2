@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 class PingCommand extends Command {
 	constructor() {
 		super('coinflip', {
-			aliases: ['CoinFlip', 'cf'],
+			aliases: ['coinflip', 'cf'],
 			category: 'fun',
 			description : {
 				content : 'Flip a coin.',
