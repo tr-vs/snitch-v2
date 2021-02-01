@@ -58,6 +58,7 @@ class NowPlayingCommand extends Command {
 			const name = data.recenttracks.track[0].name;
 			const artist = data.recenttracks.track[0].artist['#text'];
 			const pic = data.recenttracks.track[0].image[2]['#text'];
+			const album = data.recenttracks.track[0].album['#text'];
 			const artisturl = `https://www.last.fm/music/${encodeURIComponent(artist)}`;
 			const trackurl = data.recenttracks.track[0].url;
 
@@ -72,13 +73,14 @@ class NowPlayingCommand extends Command {
 			// eslint-disable-next-line no-shadow
 			const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
 
-			if(final.track == undefined) {
+			if(final.track == undefined || final.track.userplaycount == undefined) {
 				const embed = new MessageEmbed()
 					.setAuthor(`${tag} is currently listening to:`, authorAv)
 					.addFields(
 						{ name:'Name:', value: `*[${name}](${trackurl})*`, inline: true },
 						{ name:'Artist:', value: `*[${artist}](${artisturl})*`, inline: true },
 					)
+					.setFooter(`Album: ${album}`)
 					.setThumbnail(pic)
 					.setColor('#2f3136');
 				message.util.send(embed).then(msg => {
@@ -96,7 +98,7 @@ class NowPlayingCommand extends Command {
 				)
 				.setThumbnail(pic)
 				.setColor('#2f3136')
-				.setFooter(`Playcount: ${playCount}`);
+				.setFooter(`Album: ${album} | Playcount: ${playCount}`);
 			message.util.send(embed).then(msg => {
 				msg.react('775156840652603412').then(msg.react('749536550261358613'));
 			});

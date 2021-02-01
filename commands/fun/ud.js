@@ -49,7 +49,7 @@ class UDCommand extends Command {
 				const embed2 = new MessageEmbed()
 					.setDescription('`No definition available for the term. :(`')
 					.setColor('#2f3136');
-				message.channel.send(embed2);
+				message.util.send(embed2);
 				return;
 			}
 			const def = json.definition;

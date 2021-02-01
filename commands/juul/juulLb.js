@@ -27,7 +27,7 @@ class JuulRecordCommand extends Command {
 			const embed = new MessageEmbed()
 				.setDescription('`No one has any hits in the server!`')
 				.setColor('2f3136');
-			message.channel.send(embed);
+			message.util.send(embed);
 		}
 		if(list.length > 0) {
 			for (let i = 0; i < list.length; i += 10) {
@@ -77,7 +77,7 @@ class JuulRecordCommand extends Command {
 			const embed = new MessageEmbed()
 				.setDescription('`No one has any hits in the server!`')
 				.setColor('2f3136');
-			message.channel.send(embed);
+			message.util.send(embed);
 		}
 		const embed = new MessageEmbed()
 			.setTitle(`Juul Hit Leaderboard in ${message.guild.name}`)
@@ -85,7 +85,7 @@ class JuulRecordCommand extends Command {
 			.setAuthor(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 256 }))
 			.setColor('#2f3136')
 			.setFooter(`Page ${page} of ${description.length}`);
-		await message.channel.send(embed).then(msg => {
+		await message.util.send(embed).then(msg => {
 			if(description.length !== 1) {
 				// eslint-disable-next-line no-unused-vars
 				msg.react('⏮').then(r => {

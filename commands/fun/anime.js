@@ -94,7 +94,6 @@ class AnimeSearchCommand extends Command {
 
         const result = await fetch(url, options).then(r => r.json());
         const anime = result.data.Page.media[0];
-        console.log(anime);
         const embed = new MessageEmbed()
             .setTimestamp(anime.nextAiringEpisode.airingAt * 1000)
             .setFooter(`${anime.averageScore}% Rating | Releases`)
@@ -105,8 +104,9 @@ class AnimeSearchCommand extends Command {
             .setTitle(anime.title.romaji)
             .setURL(anime.streamingEpisodes[0].url)
             .setImage(anime.coverImage.medium)
-            .setAuthor('Requested by ' + message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 256 }));
-        message.channel.send(embed);
+			.setAuthor('Requested by ' + message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 256 }))
+			.setColor('2f3136');
+        message.util.send(embed);
 	}
 }
 

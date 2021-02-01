@@ -50,7 +50,7 @@ class EmoteCommand extends Command {
 		const id = args.emoji.match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/);
 		if (id == null) {
 			const embed = new MessageEmbed().setDescription('`Could not find an emote.`').setColor('#2f3136');
-			return message.channel.send(embed);
+			return message.util.send(embed);
 		}
 		const response = await fetch(`https://cdn.discordapp.com/emojis/${id[3]}`, { method: 'GET' });
 		const buffer = await response.buffer();
@@ -61,7 +61,7 @@ class EmoteCommand extends Command {
 		} else if (type.ext == 'png') {
 			name = 'emote.png';
 		}
-		message.channel.send(new MessageAttachment(buffer, name));
+		message.util.send(new MessageAttachment(buffer, name));
 	}
 }
 

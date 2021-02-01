@@ -172,7 +172,7 @@ class WhoKnowsCommand extends Command {
 							if (crown.userID != sorted.member.id) {
 								// eslint-disable-next-line no-shadow
 								const embed = new MessageEmbed().setDescription(`<a:crown:791164532889354270> \`${sorted.member.user.username} now has the crown for ${artist}\``).setColor('ffdf00');
-								message.channel.send(embed);
+								message.util.send(embed);
 							}
 						}
 					});

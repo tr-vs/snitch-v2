@@ -20,7 +20,13 @@ class ReadyListener extends Listener {
 				`${this.client.guilds.cache.size} servers...`,
 				`${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} members...`,
 			];
-			this.client.user.setActivity(`over ${activities[i++ % activities.length]}`, { type: 'WATCHING' });
+			this.client.user.setPresence({
+				status: 'dnd',
+				activity: {
+					name: `over ${activities[i++ % activities.length]}`,
+					type: 'WATCHING',
+				},
+			});
 		}, 10000);
 		/* await timestamp.updateMany({}, {
             updateTime: Math.floor(Date.now() / 1000)

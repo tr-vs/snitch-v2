@@ -65,7 +65,7 @@ class RoleCommand extends Command {
 					.then(result => console.log(result))
 					.catch(err => console.error(err));
 
-				return message.channel.send('This server was not in our database! We have added it, please try again.');
+				return message.util.send('This server was not in our database! We have added it, please try again.');
 			}
 		});
 
@@ -76,7 +76,7 @@ class RoleCommand extends Command {
 		const embed = new MessageEmbed()
 			.setDescription(`Permissions successfully set for the role: ${message.guild.roles.cache.get(roleid)}`)
 			.setColor('#2f3136');
-		message.channel.send(embed);
+		message.util.send(embed);
 	}
 
 }
