@@ -95,17 +95,23 @@ class AnimeSearchCommand extends Command {
         const result = await fetch(url, options).then(r => r.json());
         const anime = result.data.Page.media[0];
         const embed = new MessageEmbed()
-            .setTimestamp(anime.nextAiringEpisode.airingAt * 1000)
-            .setFooter(`${anime.averageScore}% Rating | Releases`)
             .addFields(
                 { name: 'Status:', value: anime.status, inline: true },
                 { name: 'Episode Count:', value: anime.episodes, inline: true },
             )
             .setTitle(anime.title.romaji)
-            .setURL(anime.streamingEpisodes[0].url)
             .setImage(anime.coverImage.medium)
 			.setAuthor('Requested by ' + message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 256 }))
 			.setColor('2f3136');
+		if (anime.nextAiringEpisode == null) {
+			embed.setFooter(`${anime.averageScore}% Rating`);
+		} else {
+			embed.setTimestamp(anime.nextAiringEpisode.airingAt * 1000);
+			embed	.setFooter(`${anime.averageScore}% Rating | New Ep on`);
+		}
+		if (anime.streamingEpisodes[0] != undefined) {
+			embed.setURL(anime.streamingEpisodes[0].url);
+		}
         message.util.send(embed);
 	}
 }
