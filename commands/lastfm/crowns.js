@@ -110,7 +110,7 @@ class SetCommand extends Command {
 		} else {
 			const embed = new MessageEmbed()
 				.setColor('2f3136')
-				.setDescription(`\`${user.user.username} does not have crowns in this server!\``);
+				.setDescription(`\`${user.user.username} does not have any crowns in this server!\``);
 			await message.util.send(embed);
 			return;
 		}

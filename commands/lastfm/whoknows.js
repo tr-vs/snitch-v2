@@ -57,6 +57,18 @@ class WhoKnowsCommand extends Command {
 				} else {
 					return message.reply('Could not find the artist.');
 				}
+				const params4 = stringify({
+					artist: artist,
+					api_key: 'b97a0987d8be2614dae53778e3240bfd',
+					method: 'artist.search',
+					limit: 1,
+					format: 'json',
+				});
+				const autocorrect = await fetch(`https://ws.audioscrobbler.com/2.0/?${params4}`).then(r => r.json());
+				if (autocorrect.results.artistmatches.artist[0] == undefined) {
+					return message.reply('Could not find the artist.');
+				}
+				artist = autocorrect.results.artistmatches.artist[0].name;
 			}
 		} else {
 			const params3 = stringify({
@@ -172,7 +184,7 @@ class WhoKnowsCommand extends Command {
 							if (crown.userID != sorted.member.id) {
 								// eslint-disable-next-line no-shadow
 								const embed = new MessageEmbed().setDescription(`<a:crown:791164532889354270> \`${sorted.member.user.username} now has the crown for ${artist}\``).setColor('ffdf00');
-								message.util.send(embed);
+								message.channel.send(embed);
 							}
 						}
 					});
