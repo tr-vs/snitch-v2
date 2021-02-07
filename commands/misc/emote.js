@@ -47,14 +47,25 @@ class EmoteCommand extends Command {
 	}
 
 	async exec(message, args) {
-		const id = args.emoji.match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/);
-		if (id == null) {
+		let id = '';
+		let response = '';
+		if (!isNaN(args.emoji)) {
+			id = args.emoji;
+			response = await fetch(`https://cdn.discordapp.com/emojis/${id}`, { method: 'GET' });
+		} else {
+			id = args.emoji.match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/);
+			if (id == null) {
+				const embed = new MessageEmbed().setDescription('`Could not find an emote.`').setColor('#2f3136');
+				return message.util.send(embed);
+			}
+			response = await fetch(`https://cdn.discordapp.com/emojis/${id[3]}`, { method: 'GET' });
+		}
+		const buffer = await response.buffer();
+		const type = await FileType.fromBuffer(buffer);
+		if (type == undefined) {
 			const embed = new MessageEmbed().setDescription('`Could not find an emote.`').setColor('#2f3136');
 			return message.util.send(embed);
 		}
-		const response = await fetch(`https://cdn.discordapp.com/emojis/${id[3]}`, { method: 'GET' });
-		const buffer = await response.buffer();
-		const type = await FileType.fromBuffer(buffer);
 		let name = '';
 		if (type.ext == 'gif') {
 			name = 'emote.gif';
