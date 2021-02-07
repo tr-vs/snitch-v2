@@ -57,32 +57,9 @@ class WhoKnowsCommand extends Command {
 				} else {
 					return message.reply('Could not find the artist.');
 				}
-				const params4 = stringify({
-					artist: artist,
-					api_key: 'b97a0987d8be2614dae53778e3240bfd',
-					method: 'artist.search',
-					limit: 1,
-					format: 'json',
-				});
-				const autocorrect = await fetch(`https://ws.audioscrobbler.com/2.0/?${params4}`).then(r => r.json());
-				if (autocorrect.results.artistmatches.artist[0] == undefined) {
-					return message.reply('Could not find the artist.');
-				}
-				artist = autocorrect.results.artistmatches.artist[0].name;
 			}
 		} else {
-			const params3 = stringify({
-				artist: args.artist,
-				api_key: 'b97a0987d8be2614dae53778e3240bfd',
-				method: 'artist.search',
-				limit: 1,
-				format: 'json',
-			});
-			const autocorrect = await fetch(`https://ws.audioscrobbler.com/2.0/?${params3}`).then(r => r.json());
-			if (autocorrect.results.artistmatches.artist[0] == undefined) {
-				return message.reply('Could not find the artist.');
-			}
-			artist = autocorrect.results.artistmatches.artist[0].name;
+			artist = args.artist;
 		}
 		const guild = message.guild;
 		let know1 = [];
@@ -131,6 +108,7 @@ class WhoKnowsCommand extends Command {
 		if (know1.length === 0) {
 			return message.reply(`No one listens to ${artist} here.`);
 		}
+		artist = data2[0].artist.name;
 		know1 = know1.sort((a, b) => parseInt(b.plays) - parseInt(a.plays));
 		const know = _.first(_.values(know1), 10);
 		const sorted = know[0];
