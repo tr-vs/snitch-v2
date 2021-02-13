@@ -28,7 +28,7 @@ class AnimeSearchCommand extends Command {
 							return embed;
 						},
 						start: () => {
-							const embed = new MessageEmbed().setDescription('`Which anime would you like to learn about??`').setColor('2f3136').setFooter('Send \'cancel\' to cancel the command.');
+							const embed = new MessageEmbed().setDescription('`Which anime would you like to learn about?`').setColor('2f3136').setFooter('Send \'cancel\' to cancel the command.');
 							return embed;
 						},
 						retries: 4,
@@ -107,7 +107,7 @@ class AnimeSearchCommand extends Command {
 			embed.setFooter(`${anime.averageScore}% Rating`);
 		} else {
 			embed.setTimestamp(anime.nextAiringEpisode.airingAt * 1000);
-			embed	.setFooter(`${anime.averageScore}% Rating | New Ep on`);
+			embed.setFooter(`${anime.averageScore}% Rating | New Ep On`);
 		}
 		if (anime.streamingEpisodes[0] != undefined) {
 			embed.setURL(anime.streamingEpisodes[0].url);

@@ -9,7 +9,8 @@ async function bruh() {
 		format: 'json',
 
 	});
-	const autocorrect = await fetch(`https://ws.audioscrobbler.com/2.0/?${params3}`).then(r => r.json());
-	console.log(autocorrect.recenttracks.track);
+	const request = ['https://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=2Pac&album=Me%20Against%20the%20World&username=chopstix_&api_key=b97a0987d8be2614dae53778e3240bfd&format=json&limit=1']
+	const data2 = await Promise.all(request.map(u => fetch(u).then(resp => resp.json())));
+	console.log(data2);
 }
 bruh();
