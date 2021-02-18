@@ -55,7 +55,6 @@ class NowPlayingCommand extends Command {
 			}
 			if(data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
 				console.error(data.recenttracks);
-				this.client.users.cache.get('281604477457399818').send('Error');
 				const embed = new MessageEmbed()
 					.setDescription(`[Songs have not been detected.](https://www.last.fm/user/${settings.user})`)
 					.setColor('#2f3136');
