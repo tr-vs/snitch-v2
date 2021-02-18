@@ -14,7 +14,7 @@ class ReadyListener extends Listener {
 	async exec() {
 		console.log('I\'m ready!');
 
-		let i = 0;
+		/* let i = 0;
 		setInterval(() => {
 			const activities = [
 				`${this.client.guilds.cache.size} servers...`,
@@ -27,13 +27,20 @@ class ReadyListener extends Listener {
 					type: 'WATCHING',
 				},
 			});
-		}, 10000);
+		}, 10000);*/
 		/* await timestamp.updateMany({}, {
             updateTime: Math.floor(Date.now() / 1000)
         })
 
         check.check()
         setInterval(check.check, 300000);*/
+		this.client.user.setPresence({
+			status: 'dnd',
+			activity: {
+				name: 'oooo aaa oo',
+				type: 'PLAYING',
+			},
+		});
 	}
 
 }

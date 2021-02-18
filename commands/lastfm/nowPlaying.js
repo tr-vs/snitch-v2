@@ -48,9 +48,16 @@ class NowPlayingCommand extends Command {
 		});
 		// eslint-disable-next-line no-unused-vars
 		const result = await fetch(`https://ws.audioscrobbler.com/2.0/?${params}`).then(r=> r.json().then(async function(data) {
-			if(!data.recenttracks || data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
+			if (data.error) {
+				await message.reply('Error fetching info from last.fm.');
+				console.error(data);
+				return;
+			}
+			if(data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
+				console.error(data.recenttracks);
+				this.client.users.cache.get('281604477457399818').send('Error');
 				const embed = new MessageEmbed()
-					.setDescription(`[Songs have not been detected yet.](https://www.last.fm/user/${settings.user})`)
+					.setDescription(`[Songs have not been detected.](https://www.last.fm/user/${settings.user})`)
 					.setColor('#2f3136');
 				return message.util.send(embed);
 			}
