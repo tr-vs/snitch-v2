@@ -45,7 +45,7 @@ class UDCommand extends Command {
 
 	async exec(message, args) {
 		const params = stringify({
-			term: 'mod',
+			term: args.define,
 		});
 		// eslint-disable-next-line no-unused-vars
 		const result = await fetch(`https://api.urbandictionary.com/v0/define?${params}`).then(r=> r.json());

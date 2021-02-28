@@ -20,7 +20,7 @@ class JuulStealCommand extends Command {
 		// eslint-disable-next-line no-unused-vars
 		const [hits, steals, menthol, mango, cucumber, creme, fruit] = await econ.getBal(message.author.id, message.guild.id);
 		if (steals == 0) {
-			const embed = new MessageEmbed().setDescription('`You don\'t have a pair of black airforces... Buy some with +buy black airforces`').setColor('2f3136');
+			const embed = new MessageEmbed().setDescription('`You don\'t have a pair of black airforces... Buy some with +JUUL buy black airforces`').setColor('2f3136');
 			return message.util.send(embed);
 		}
 		const check = await juul.findOne({

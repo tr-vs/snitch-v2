@@ -24,10 +24,17 @@ class WhoKnowsCommand extends Command {
 					match: 'content',
 				},
 			],
+			cooldown: 15000,
+            ratelimit: 1,
 		});
 	}
 
 	async exec(message, args) {
+		try {
+			await message.guild.members.fetch();
+		} catch (err) {
+			console.error(err);
+		}
 		const user1 = await LastFMUser.findOne({
 			authorID: message.author.id,
 		}).lean();

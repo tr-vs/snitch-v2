@@ -22,10 +22,17 @@ class WhoKnowsAlbumCommand extends Command {
 					match: 'content',
 				},
 			],
+			cooldown: 15000,
+            ratelimit: 1,
 		});
 	}
 
 	async exec(message, args) {
+		try {
+			await message.guild.members.fetch();
+		} catch (err) {
+			console.error(err);
+		}
 		const user1 = await LastFMUser.findOne({
 			authorID: message.author.id,
 		}).lean();
@@ -73,7 +80,6 @@ class WhoKnowsAlbumCommand extends Command {
 			album = autocorrect.results.albummatches.album[0].name;
 			artist = autocorrect.results.albummatches.album[0].artist;
 		}
-
 		const guild = message.guild;
 		let know1 = [];
 		const user = await LastFMUser.find().lean();

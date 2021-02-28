@@ -187,6 +187,8 @@ module.exports.check = async () => {
 
 };
 
+client.on('debug', console.log);
+
 client.snipes = new Map();
 client.edits = new Map();
 

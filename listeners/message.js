@@ -40,9 +40,6 @@ class MissingPermsListener extends Listener {
                 }
             })();
         }*/
-		if (message.channel.type !== 'dm' && message.content.toLowerCase().startsWith(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
-			await message.guild.members.fetch();
-		}
 	}
 }
 
