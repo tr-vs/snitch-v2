@@ -41,8 +41,8 @@ class WhoKnowsAlbumCommand extends Command {
 		if (!args.album) {
 			if (user1 === null) {
 				const embed = new MessageEmbed()
-					.setDescription('`Please connect your last.fm account. For more help, do +help set user`')
-					.setColor('#8e276f');
+					.setDescription('`Please connect your last.fm account. For more help, do +help lf set`')
+					.setColor('#2f3136');
 				return message.util.send(embed);
 			}
 			const params = stringify({

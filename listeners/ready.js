@@ -37,7 +37,7 @@ class ReadyListener extends Listener {
 		this.client.user.setPresence({
 			status: 'dnd',
 			activity: {
-				name: 'oooo aaa oo',
+				name: 'bonkbonkbonkboknbonkbonkbonkboknkbonkbonkboknk',
 				type: 'PLAYING',
 			},
 		});
