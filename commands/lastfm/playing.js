@@ -14,10 +14,17 @@ class PlayingCommand extends Command {
 			},
 			category: 'Last FM✧',
 			typing: true,
+			cooldown: 30000,
+            ratelimit: 1,
 		});
 	}
 
 	async exec(message) {
+		try {
+			await message.guild.members.fetch();
+		} catch (err) {
+			console.error(err);
+		}
 		const user = await LastFMUser.find().lean();
 		const users = [];
 		for (let i = 0; i < user.length; i++) {

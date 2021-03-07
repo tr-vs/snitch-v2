@@ -77,7 +77,6 @@ class SetCommand extends Command {
 		message.util.send(embed);
 		// eslint-disable-next-line no-unused-vars
 		const crowns = await Crown.deleteMany({
-			guildID: message.member.guild.id,
 			userID: message.member.user.id,
 		}, (err) => {
 			if(err) console.error(err);

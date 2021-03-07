@@ -24,7 +24,7 @@ class WhoKnowsCommand extends Command {
 					match: 'content',
 				},
 			],
-			cooldown: 15000,
+			cooldown: 10000,
             ratelimit: 1,
 		});
 	}
