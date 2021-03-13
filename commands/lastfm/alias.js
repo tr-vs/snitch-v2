@@ -10,7 +10,7 @@ class NowPlayingCommand extends Command {
 			description: {
 				content: 'Set an custom alias for the now-playing command',
 				usage: ['lastfm alias [content]', 'lf alias [content]'],
-				aliases: ['a'],
+				aliases: ['alias', 'a'],
 			},
 			args: [
 				{
@@ -24,6 +24,12 @@ class NowPlayingCommand extends Command {
 	}
 
 	async exec(message, args) {
+		if (typeof args.content !== 'string') {
+			const embed = new MessageEmbed()
+				.setDescription('`Not a valid alias. Try again.`')
+				.setColor('#2f3136');
+			return message.util.send(embed);
+		}
 		const state = await aliasFunction.setAlias(message.author.id, args.content);
 
 		if(state === 'fail') {
