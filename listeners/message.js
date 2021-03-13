@@ -13,7 +13,7 @@ class MissingPermsListener extends Listener {
 	async exec(message) {
 		const command = this.client.commandHandler.modules.get('nowplaying');
 		const alias = await aliasFunction.getAlias(message.author.id);
-		if(alias !== '' && message.content === alias) {
+		if(alias !== '' && message.content === alias.toLowerCase()) {
 			this.client.commandHandler.handleDirectCommand(message, message.content, command);
 		}
 
