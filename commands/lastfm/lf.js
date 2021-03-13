@@ -20,6 +20,7 @@ class LFCommand extends Command {
 					['whoknowstrack', 'wkt', 'whoknowstrack'],
 					['recenttracks', 'rt', 'recenttracks', 'recent'],
 					['whoknowsalbum', 'wka', 'whoknowsalbum'],
+					['alias', 'a'],
 				],
 			},
 		});
@@ -40,6 +41,7 @@ class LFCommand extends Command {
 				['whoknowstrack', 'wkt', 'whoknowstrack'],
 				['recenttracks', 'rt', 'recenttracks', 'recent'],
 				['whoknowsalbum', 'wka', 'whoknowsalbum'],
+				['alias', 'a'],
 			],
 			otherwise: message => {
 				const embed = new MessageEmbed().setDescription(`\`Not a valid command. Try ${this.handler.prefix(message)}help lastfm for a list.\``).setColor('2f3136');

@@ -1,5 +1,6 @@
 const { Listener } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
+const aliasFunction = require('../alias');
 
 class MissingPermsListener extends Listener {
 	constructor() {
@@ -10,6 +11,12 @@ class MissingPermsListener extends Listener {
 	}
 
 	async exec(message) {
+		const command = this.client.commandHandler.modules.get('nowplaying');
+		const alias = await aliasFunction.getAlias(message.author.id);
+		if(alias !== '' && message.content === alias) {
+			this.client.commandHandler.handleDirectCommand(message, message.content, command);
+		}
+
 		if(message.content.toLowerCase().includes('riku')) {
 			const embed = new MessageEmbed()
 				.setAuthor(`Sent by ${message.author.tag}`, message.author.displayAvatarURL())
