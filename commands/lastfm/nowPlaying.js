@@ -26,7 +26,12 @@ class NowPlayingCommand extends Command {
 	}
 
 	async exec(message, args) {
-		const id = args.ping ? args.ping.id : message.author.id;
+		let id = '';
+		if (!message.content.includes(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
+			id = message.author.id;
+		} else {
+			id = args.ping ? args.ping.id : message.author.id;
+		}
 		const settings = await LastFMUser.findOne({
 			authorID: id,
 		});

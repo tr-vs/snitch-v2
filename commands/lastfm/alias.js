@@ -8,7 +8,7 @@ class NowPlayingCommand extends Command {
 	constructor() {
 		super('alias', {
 			description: {
-				content: 'Set an custom alias for the now-playing command',
+				content: 'Set an custom alias for the now-playing command.',
 				usage: ['lastfm alias [content]', 'lf alias [content]'],
 				aliases: ['alias', 'a'],
 			},
