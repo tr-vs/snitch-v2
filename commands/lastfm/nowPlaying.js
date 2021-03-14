@@ -132,7 +132,6 @@ class NowPlayingCommand extends Command {
 				const pfp = final.user.image[2]['#text'];
 				const embed = new MessageEmbed()
 					.setDescription(`**Track**\n${name}\n**Artist**\n${artist}`)
-					.setThumbnail(pfp.slice(0, -4) + '.gif')
 					.setColor(message.member.displayHexColor);
 				if (pfp !== '') embed.setThumbnail(pfp.slice(0, -4) + '.gif');
 				message.util.send(embed).then(msg => {
@@ -159,8 +158,6 @@ class NowPlayingCommand extends Command {
 				});
 				// eslint-disable-next-line no-shadow
 				const final2 = await fetch(`https://ws.audioscrobbler.com/2.0/?${params3}`).then(r=> r.json());
-				const playCount = final.track.userplaycount;
-				const artistPlays = final2.artist.stats.userplaycount;
 
 				if(final.track == undefined || final.track.userplaycount == undefined) {
 					const embed = new MessageEmbed()
@@ -184,6 +181,8 @@ class NowPlayingCommand extends Command {
 					});
 					return;
 				}
+				const playCount = final.track.userplaycount;
+				const artistPlays = final2.artist.stats.userplaycount;
 				const embed = new MessageEmbed()
 					.setAuthor(`${settings.user}`, authorAv)
 					.setDescription(`[${name}](${trackurl})\nby [${artist}](${artisturl})\non [${album}](${albumurl})`)
