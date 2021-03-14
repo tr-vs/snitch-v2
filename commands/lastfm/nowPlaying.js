@@ -27,15 +27,17 @@ class NowPlayingCommand extends Command {
 
 	async exec(message, args) {
 		let id = '';
+		let userOBJ = '';
 		if (!message.content.includes(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
 			id = message.author.id;
+			userOBJ = args.ping ? args.ping : message.author;
 		} else {
 			id = args.ping ? args.ping.id : message.author.id;
+			userOBJ = args.ping ? args.ping : message.author;
 		}
 		const settings = await LastFMUser.findOne({
 			authorID: id,
 		});
-		const userOBJ = args.ping ? args.ping : message.author;
 		const tag = userOBJ.tag;
 		const authorAv = userOBJ.displayAvatarURL({ dynamic: true, size: 256 });
 		if (settings == null) {
