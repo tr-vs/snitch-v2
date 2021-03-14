@@ -53,6 +53,7 @@ class SetCommand extends Command {
 					_id: mongoose.Types.ObjectId(),
 					authorID: message.author.id,
 					user: args.user,
+					embed: 1,
 				});
 
 				lfu.save()

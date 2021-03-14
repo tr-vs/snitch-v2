@@ -4,6 +4,7 @@ const LastFMUser = require('../../models/lfuser.js');
 const { MessageEmbed } = require('discord.js');
 const { stringify } = require('querystring');
 const fetch = require('node-fetch');
+const ColorThief = require('colorthief');
 
 class NowPlayingCommand extends Command {
 	constructor() {
@@ -74,47 +75,174 @@ class NowPlayingCommand extends Command {
 			const album = data.recenttracks.track[0].album['#text'];
 			const artisturl = `https://www.last.fm/music/${encodeURIComponent(artist)}`;
 			const trackurl = data.recenttracks.track[0].url;
+			const albumurl = `https://www.last.fm/music/${encodeURIComponent(artist)}/${encodeURIComponent(album)}`;
+			const color = await ColorThief.getColor(pic);
+			if (settings.embed === undefined || settings.embed === 1) {
+				const params2 = stringify({
+					method: 'track.getInfo',
+					track: name,
+					artist: artist,
+					username: settings.user,
+					api_key: 'b97a0987d8be2614dae53778e3240bfd',
+					format: 'json',
+				});
+				// eslint-disable-next-line no-shadow
+				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
 
-			const params2 = stringify({
-				method: 'track.getInfo',
-				track: name,
-				artist: artist,
-				username: settings.user,
-				api_key: 'b97a0987d8be2614dae53778e3240bfd',
-				format: 'json',
-			});
-			// eslint-disable-next-line no-shadow
-			const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
+				if(final.track == undefined || final.track.userplaycount == undefined || album === undefined) {
+					const embed = new MessageEmbed()
+						.setAuthor(`${tag} is currently listening to:`, authorAv)
+						.addFields(
+							{ name:'Name:', value: `[${name}](${trackurl})`, inline: true },
+							{ name:'Artist:', value: `[${artist}](${artisturl})`, inline: true },
+						)
+						.setThumbnail(pic)
+						.setColor('#2f3136');
+					message.util.send(embed).then(msg => {
+						msg.react('<:goodjob:775156840652603412>').then(msg.react('<:badjob:749536550261358613>'));
+					});
+					return;
 
-			if(final.track == undefined || final.track.userplaycount == undefined) {
+				}
+				const playCount = final.track.userplaycount;
 				const embed = new MessageEmbed()
 					.setAuthor(`${tag} is currently listening to:`, authorAv)
 					.addFields(
-						{ name:'Name:', value: `*[${name}](${trackurl})*`, inline: true },
-						{ name:'Artist:', value: `*[${artist}](${artisturl})*`, inline: true },
+						{ name:'Name:', value: `[${name}](${trackurl})`, inline: true },
+						{ name:'Artist:', value: `[${artist}](${artisturl})`, inline: true },
 					)
-					.setFooter(`Album: ${album}`)
 					.setThumbnail(pic)
-					.setColor('#2f3136');
+					.setColor('#2f3136')
+					.setFooter(`Album: ${album} | Playcount: ${playCount}`);
 				message.util.send(embed).then(msg => {
-					msg.react('<:goodjob:775156840652603412>').then(msg.react('<:badjob:749536550261358613>'));
+					msg.react('775156840652603412').then(msg.react('749536550261358613'));
 				});
-				return;
-
 			}
-			const playCount = final.track.userplaycount;
-			const embed = new MessageEmbed()
-				.setAuthor(`${tag} is currently listening to:`, authorAv)
-				.addFields(
-					{ name:'Name:', value: `*[${name}](${trackurl})*`, inline: true },
-					{ name:'Artist:', value: `*[${artist}](${artisturl})*`, inline: true },
-				)
-				.setThumbnail(pic)
-				.setColor('#2f3136')
-				.setFooter(`Album: ${album} | Playcount: ${playCount}`);
-			message.util.send(embed).then(msg => {
-				msg.react('775156840652603412').then(msg.react('749536550261358613'));
-			});
+			if (settings.embed === 2) {
+				const params2 = stringify({
+					method: 'user.getInfo',
+					track: name,
+					artist: artist,
+					username: settings.user,
+					api_key: 'b97a0987d8be2614dae53778e3240bfd',
+					format: 'json',
+				});
+				// eslint-disable-next-line no-shadow
+				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
+				const pfp = final.user.image[2]['#text'];
+				const embed = new MessageEmbed()
+					.setDescription(`**Track**\n${name}\n**Artist**\n${artist}`)
+					.setThumbnail(pfp.slice(0, -4) + '.gif')
+					.setColor(message.member.displayHexColor);
+				if (pfp !== '') embed.setThumbnail(pfp.slice(0, -4) + '.gif');
+				message.util.send(embed).then(msg => {
+					msg.react('775156840652603412').then(msg.react('749536550261358613'));
+				});
+			}
+			if (settings.embed === 3) {
+				const params2 = stringify({
+					method: 'track.getInfo',
+					track: name,
+					artist: artist,
+					username: settings.user,
+					api_key: 'b97a0987d8be2614dae53778e3240bfd',
+					format: 'json',
+				});
+				// eslint-disable-next-line no-shadow
+				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
+				const params3 = stringify({
+					method: 'artist.getInfo',
+					artist: artist,
+					username: settings.user,
+					api_key: 'b97a0987d8be2614dae53778e3240bfd',
+					format: 'json',
+				});
+				// eslint-disable-next-line no-shadow
+				const final2 = await fetch(`https://ws.audioscrobbler.com/2.0/?${params3}`).then(r=> r.json());
+				const playCount = final.track.userplaycount;
+				const artistPlays = final2.artist.stats.userplaycount;
+
+				if(final.track == undefined || final.track.userplaycount == undefined) {
+					const embed = new MessageEmbed()
+						.setAuthor(`${settings.user}`, authorAv)
+						.setDescription(`[${name}](${trackurl})\nby [${artist}](${artisturl})\non [${album}](${albumurl})`)
+						.setColor(color)
+						.setThumbnail(pic);
+					message.util.send(embed).then(msg => {
+						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					});
+					return;
+				}
+				if(album === undefined) {
+					const embed = new MessageEmbed()
+						.setAuthor(`${settings.user}`, authorAv)
+						.setDescription(`[${name}](${trackurl})\nby [${artist}](${artisturl})`)
+						.setColor(color)
+						.setThumbnail(pic);
+					message.util.send(embed).then(msg => {
+						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					});
+					return;
+				}
+				const embed = new MessageEmbed()
+					.setAuthor(`${settings.user}`, authorAv)
+					.setDescription(`[${name}](${trackurl})\nby [${artist}](${artisturl})\non [${album}](${albumurl})`)
+					.setFooter(`${playCount}x・${artistPlays}`)
+					.setColor(color)
+					.setThumbnail(pic);
+				message.util.send(embed).then(msg => {
+					msg.react('775156840652603412').then(msg.react('749536550261358613'));
+				});
+			}
+			if (settings.embed === 4) {
+				const params2 = stringify({
+					method: 'track.getInfo',
+					track: name,
+					artist: artist,
+					username: settings.user,
+					api_key: 'b97a0987d8be2614dae53778e3240bfd',
+					format: 'json',
+				});
+				// eslint-disable-next-line no-shadow
+				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
+
+				const userplayCount = final.track.userplaycount;
+				const playcount = final.track.playcount;
+
+
+				if(final.track == undefined || final.track.userplaycount == undefined) {
+					const embed = new MessageEmbed()
+						.setAuthor(`${settings.user}`, authorAv)
+						.setDescription(`[${name}](${trackurl})\n> **artist:** [${artist}](${artisturl})\n> **album:** [${album}](${albumurl})`)
+						.setColor(color)
+						.setThumbnail(pic);
+					message.util.send(embed).then(msg => {
+						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					});
+					return;
+				}
+				if(album === undefined) {
+					const embed = new MessageEmbed()
+						.setAuthor(`${settings.user}`, authorAv)
+						.setDescription(`[${name}](${trackurl})\n> **artist:** [${artist}](${artisturl})`)
+						.setColor(color)
+						.setThumbnail(pic);
+					message.util.send(embed).then(msg => {
+						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					});
+					return;
+				}
+
+				const embed = new MessageEmbed()
+					.setAuthor(`${settings.user}`, authorAv)
+					.setDescription(`[${name}](${trackurl})\n> **artist:** [${artist}](${artisturl})\n> **album:** [${album}](${albumurl})`)
+					.setFooter(`${userplayCount} plays・${playcount} total scrobbles`)
+					.setColor(color)
+					.setThumbnail(pic);
+				message.util.send(embed).then(msg => {
+					msg.react('775156840652603412').then(msg.react('749536550261358613'));
+				});
+			}
 		}));
 	}
 }

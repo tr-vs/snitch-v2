@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
 	authorID: String,
 	user: String,
 	alias: String,
+	embed: Number,
 });
 
 module.exports = mongoose.model('LastFMUser', userSchema, 'lastfmUsers');

@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 const { Command } = require('discord-akairo');
-
 const { MessageEmbed } = require('discord.js');
 const aliasFunction = require('../../alias');
 
@@ -9,7 +8,7 @@ class NowPlayingCommand extends Command {
 		super('alias', {
 			description: {
 				content: 'Set an custom alias for the now-playing command.',
-				usage: ['lastfm alias [content]', 'lf alias [content]'],
+				usage: ['lastfm alias [content]', 'lf a [content]'],
 				aliases: ['alias', 'a'],
 			},
 			args: [
@@ -19,7 +18,6 @@ class NowPlayingCommand extends Command {
 				},
 			],
 			category: 'Last FM✧',
-			typing: true,
 		});
 	}
 
