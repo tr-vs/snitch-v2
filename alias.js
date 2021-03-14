@@ -36,6 +36,6 @@ module.exports.setAlias = async (userID, messageContent) => {
 	await settings.updateOne({
 		alias: messageContent.toLowerCase(),
 	});
-	aliasCache[`${userID}`] = messageContent;
+	aliasCache[`${userID}`] = messageContent.toLowerCase();
 	return 'success';
 };
