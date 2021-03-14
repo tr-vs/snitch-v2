@@ -31,7 +31,7 @@ class NowPlayingCommand extends Command {
 		let userOBJ = '';
 		if (!message.content.includes(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
 			id = message.author.id;
-			userOBJ = args.ping ? args.ping : message.author;
+			userOBJ = message.author;
 		} else {
 			id = args.ping ? args.ping.id : message.author.id;
 			userOBJ = args.ping ? args.ping : message.author;
