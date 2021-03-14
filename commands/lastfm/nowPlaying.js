@@ -77,6 +77,15 @@ class NowPlayingCommand extends Command {
 			const trackurl = data.recenttracks.track[0].url;
 			const albumurl = `https://www.last.fm/music/${encodeURIComponent(artist)}/${encodeURIComponent(album)}`;
 			const color = await ColorThief.getColor(pic);
+
+			const numformat = n => {
+				if (n < 1e3) return n;
+				if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + 'K';
+				if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + 'M';
+				if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + 'B';
+				if (n >= 1e12) return +(n / 1e12).toFixed(1) + 'T';
+			};
+
 			if (settings.embed === undefined || settings.embed === 1) {
 				const params2 = stringify({
 					method: 'track.getInfo',
@@ -206,7 +215,7 @@ class NowPlayingCommand extends Command {
 				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
 
 				const userplayCount = final.track.userplaycount;
-				const playcount = final.track.playcount;
+				const playcount = numformat(final.track.playcount);
 
 
 				if(final.track == undefined || final.track.userplaycount == undefined) {
