@@ -68,7 +68,6 @@ class NowPlayingCommand extends Command {
 					.setColor('#2f3136');
 				return message.util.send(embed);
 			}
-
 			const name = data.recenttracks.track[0].name;
 			const artist = data.recenttracks.track[0].artist['#text'];
 			const pic = data.recenttracks.track[0].image[2]['#text'];
@@ -76,7 +75,13 @@ class NowPlayingCommand extends Command {
 			const artisturl = `https://www.last.fm/music/${encodeURIComponent(artist)}`;
 			const trackurl = data.recenttracks.track[0].url;
 			const albumurl = `https://www.last.fm/music/${encodeURIComponent(artist)}/${encodeURIComponent(album)}`;
-			const color = await ColorThief.getColor(pic);
+
+			let color = '';
+			if (pic !== '') {
+				color = await ColorThief.getColor(pic);
+			} else {
+				color = message.member.displayHexColor;
+			}
 
 			const numformat = n => {
 				if (n < 1e3) return n;
@@ -85,7 +90,6 @@ class NowPlayingCommand extends Command {
 				if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + 'B';
 				if (n >= 1e12) return +(n / 1e12).toFixed(1) + 'T';
 			};
-
 			if (settings.embed === undefined || settings.embed === 1) {
 				const params2 = stringify({
 					method: 'track.getInfo',
@@ -148,6 +152,7 @@ class NowPlayingCommand extends Command {
 				});
 			}
 			if (settings.embed === 3) {
+				const request = [];
 				const params2 = stringify({
 					method: 'track.getInfo',
 					track: name,
@@ -156,8 +161,7 @@ class NowPlayingCommand extends Command {
 					api_key: 'b97a0987d8be2614dae53778e3240bfd',
 					format: 'json',
 				});
-				// eslint-disable-next-line no-shadow
-				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
+				request.push(`https://ws.audioscrobbler.com/2.0/?${params2}`);
 				const params3 = stringify({
 					method: 'artist.getInfo',
 					artist: artist,
@@ -165,10 +169,9 @@ class NowPlayingCommand extends Command {
 					api_key: 'b97a0987d8be2614dae53778e3240bfd',
 					format: 'json',
 				});
-				// eslint-disable-next-line no-shadow
-				const final2 = await fetch(`https://ws.audioscrobbler.com/2.0/?${params3}`).then(r=> r.json());
-
-				if(final.track == undefined || final.track.userplaycount == undefined) {
+				request.push(`https://ws.audioscrobbler.com/2.0/?${params3}`);
+				const final = await Promise.all(request.map(u => fetch(u).then(resp => resp.json())));
+				if(final[0].track == undefined || final[0].track.userplaycount == undefined) {
 					const embed = new MessageEmbed()
 						.setAuthor(`${settings.user}`, authorAv)
 						.setDescription(`[${name}](${trackurl})\nby [${artist}](${artisturl})\non [${album}](${albumurl})`)
@@ -190,8 +193,8 @@ class NowPlayingCommand extends Command {
 					});
 					return;
 				}
-				const playCount = final.track.userplaycount;
-				const artistPlays = final2.artist.stats.userplaycount;
+				const playCount = final[0].track.userplaycount;
+				const artistPlays = final[1].artist.stats.userplaycount;
 				const embed = new MessageEmbed()
 					.setAuthor(`${settings.user}`, authorAv)
 					.setDescription(`[${name}](${trackurl})\nby [${artist}](${artisturl})\non [${album}](${albumurl})`)

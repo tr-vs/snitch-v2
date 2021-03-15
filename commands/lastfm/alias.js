@@ -15,6 +15,7 @@ class NowPlayingCommand extends Command {
 				{
 					id: 'content',
 					type: 'string',
+					match: 'content',
 				},
 			],
 			category: 'Last FM✧',
