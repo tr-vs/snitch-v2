@@ -8,7 +8,7 @@ class SupportCommand extends Command {
 			category: 'Misc',
 			description : {
 				content : 'If you have any questions, feel free to join the support server.',
-				usage : ['invite', 'inv'],
+				usage : ['support'],
 			},
 		});
 	}
