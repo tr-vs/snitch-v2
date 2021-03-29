@@ -90,6 +90,9 @@ class TopArtistsCommand extends Command {
 			return message.util.send(embed);
 		}
 		for (let i = 0; i < 10; i++) {
+			if (data.topartists.artist[i] == undefined) {
+				continue;
+			}
 			const {
 				name: album_title,
 				playcount: play_count,

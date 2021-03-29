@@ -94,6 +94,13 @@ class AnimeSearchCommand extends Command {
 
         const result = await fetch(url, options).then(r => r.json());
         const anime = result.data.Page.media[0];
+		if (anime == undefined) {
+			const embed2 = new MessageEmbed()
+				.setDescription('`There was an error or no anime could be found. :(`')
+				.setColor('#2f3136');
+			message.util.send(embed2);
+			return;
+		}
         const embed = new MessageEmbed()
             .addFields(
                 { name: 'Status:', value: anime.status, inline: true },

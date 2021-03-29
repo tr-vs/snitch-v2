@@ -45,14 +45,16 @@ class ImageCommand extends Command {
     }
 
     async exec(message, args) {
-        const role = await Guild.findOne({
-            guildID: message.guild.id,
-        });
-        if (role.sniperID != '1' && !message.member.roles.cache.has(role.sniperID) && !message.member.permissions.has('MANAGE_MESSAGES')) {
-            const embed = new MessageEmbed()
-                .setDescription(`You are missing the ${message.guild.roles.cache.get(role.sniperID)} role.`)
-                .setColor('#2f3136');
-            return message.util.send(embed);
+        if (message.channel.type !== 'dm') {
+            const role = await Guild.findOne({
+                guildID: message.guild.id,
+            });
+            if (role.sniperID != '1' && !message.member.roles.cache.has(role.sniperID) && !message.member.permissions.has('MANAGE_MESSAGES')) {
+                const embed = new MessageEmbed()
+                    .setDescription(`You are missing the ${message.guild.roles.cache.get(role.sniperID)} role.`)
+                    .setColor('#2f3136');
+                return message.util.send(embed);
+            }
         }
         let queryString = '';
         if (message.channel.nsfw) {

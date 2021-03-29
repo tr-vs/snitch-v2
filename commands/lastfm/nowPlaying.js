@@ -217,10 +217,6 @@ class NowPlayingCommand extends Command {
 				// eslint-disable-next-line no-shadow
 				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
 
-				const userplayCount = final.track.userplaycount;
-				const playcount = numformat(final.track.playcount);
-
-
 				if(final.track == undefined || final.track.userplaycount == undefined) {
 					const embed = new MessageEmbed()
 						.setAuthor(`${settings.user}`, authorAv)
@@ -232,6 +228,9 @@ class NowPlayingCommand extends Command {
 					});
 					return;
 				}
+				const userplayCount = final.track.userplaycount;
+				const playcount = numformat(final.track.playcount);
+
 				if(album === undefined) {
 					const embed = new MessageEmbed()
 						.setAuthor(`${settings.user}`, authorAv)
