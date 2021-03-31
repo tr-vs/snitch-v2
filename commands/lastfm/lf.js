@@ -22,6 +22,7 @@ class LFCommand extends Command {
 					['whoknowsalbum', 'wka', 'whoknowsalbum'],
 					['alias', 'a'],
 					['embed', 'e'],
+					['lyrics', 'l'],
 				],
 			},
 		});
@@ -44,6 +45,7 @@ class LFCommand extends Command {
 				['whoknowsalbum', 'wka', 'whoknowsalbum'],
 				['alias', 'a'],
 				['embed', 'e'],
+				['lyrics', 'l'],
 			],
 			otherwise: message => {
 				const embed = new MessageEmbed().setDescription(`\`Not a valid command. Try ${this.handler.prefix(message)}help lastfm for a list.\``).setColor('2f3136');
