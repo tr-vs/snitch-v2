@@ -1,6 +1,3 @@
-const Genius = require('genius-lyrics');
-const Client = new Genius.Client('ARXLdxVdrhN8EFztzr0by1-9rAg3sY4Cq-drWXaI-ieCNyYpa2gRTco-tLBO8J0B');
-
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const { stringify } = require('querystring');
