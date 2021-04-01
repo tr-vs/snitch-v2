@@ -12,7 +12,7 @@ class ReadyListener extends Listener {
 	}
 
 	async exec() {
-		console.log('I\'m ready!');
+		console.log('hi');
 
 		/* let i = 0;
 		setInterval(() => {

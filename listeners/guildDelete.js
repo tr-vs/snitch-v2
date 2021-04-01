@@ -1,7 +1,6 @@
 const { Listener } = require('discord-akairo');
 const Guild = require('../models/guild');
 const Crown = require('../models/crowns');
-const PostNotifs = require('../models/tiktokPostNotifs.js');
 
 class GuildDeleteListener extends Listener {
 	constructor() {
@@ -25,12 +24,6 @@ class GuildDeleteListener extends Listener {
 		}, (err) => {
 			if(err) console.error(err);
 			console.log('Crowns removed from server');
-		});
-		await PostNotifs.deleteMany({
-			guildID: guild.id,
-		}, (err) => {
-			if(err) console.error(err);
-			console.log('Stopped post notifications');
 		});
 	}
 }

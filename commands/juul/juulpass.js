@@ -26,6 +26,11 @@ class JuulPassCommand extends Command {
 	}
 
 	async exec(message, args) {
+		try {
+			await message.guild.members.fetch();
+		} catch (err) {
+			console.error(err);
+		}
 		const pass = await juul.findOne({
 			guildID: message.guild.id,
 			juulHolder: message.author.id,

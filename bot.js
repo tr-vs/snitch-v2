@@ -65,6 +65,24 @@ class MyClient extends AkairoClient {
 			if (!phrase) return null;
 			return parseDuration(phrase);
 		});
+		this.commandHandler.resolver.addType('attachment', (message, phrase) => {
+			const urlType = this.commandHandler.resolver.type('url');
+			const url = urlType(message, phrase);
+
+			const userType = this.commandHandler.resolver.type('user');
+			const user = userType(message, phrase);
+
+			if (message.attachments.first() !== undefined) {
+				return message.attachments.first().url;
+			}
+			if (url !== null) {
+				return url.href;
+			}
+			if (user !== null && user !== undefined) {
+				return user.displayAvatarURL({ format: 'png', dynamic: true });
+			}
+			return null;
+		});
 		this.commandHandler.resolver.addType('juulType', (message, phrase) => {
 			if (!phrase) return null;
 			const items = {
