@@ -69,7 +69,7 @@ class WhoKnowsCommand extends Command {
 				if (artistname['@attr'] && artistname['@attr'].nowplaying) {
 					artist = artistname.artist['#text'];
 				} else {
-					return message.reply('Could not find the artist.');
+					return message.reply('You are not listening to anything at the moment.');
 				}
 			}
 		} else {
@@ -102,6 +102,7 @@ class WhoKnowsCommand extends Command {
 			}
 			i++;
 		}
+		const timestamp1 = Date.now();
 		const data2 = await Promise.all(request.map(u => fetch(u).then(resp => resp.json())));
 		// eslint-disable-next-line no-shadow
 		for (let i = 0; i < data2.length; i++) {
@@ -115,6 +116,7 @@ class WhoKnowsCommand extends Command {
 				});
 			}
 		}
+		console.log(Date.now() - timestamp1);
 		if (data2.error == 6) {
 			return message.reply('Could not find the artist.');
 		}
