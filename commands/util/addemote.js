@@ -9,7 +9,7 @@ class AddEmoteCommand extends Command {
 			category: 'util',
 			description : {
 				content : 'Add or steal an emote.',
-				usage : ['ae [emote or picture] --[emote name]'],
+				usage : ['ae [emote or picture] -[emote name]'],
 			},
             clientPermissions: 'MANAGE_EMOJIS',
             userPermissions: 'MANAGE_EMOJIS',
@@ -26,7 +26,7 @@ class AddEmoteCommand extends Command {
                 {
                     id: 'name',
                     match: 'option',
-                    flag: '--',
+                    flag: '-',
                     otherwise: () => {
                         const embed = new MessageEmbed().setDescription('`Not a valid name. Please try again.`').setColor('2f3136');
                         return embed;

@@ -25,6 +25,7 @@ class GuildDeleteListener extends Listener {
 			if(err) console.error(err);
 			console.log('Crowns removed from server');
 		});
+		console.log(guild.memberCount);
 	}
 }
 
