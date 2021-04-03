@@ -62,7 +62,7 @@ class WhoKnowsTrackCommand extends Command {
 					track = tracks.name;
 					artist = tracks.artist['#text'];
 				} else {
-					return message.reply('Could not find the track.');
+					return message.reply('You are not listening to anything at the moment.');
 				}
 			}
 		} else {

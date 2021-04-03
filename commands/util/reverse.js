@@ -15,7 +15,7 @@ class ReverseImageSearchCommand extends Command {
             args: [
 				{
 					id: 'image',
-                    type: 'attachment',
+                    type: 'ris',
                     match: 'content',
                     otherwise: () => {
                         const embed = new MessageEmbed().setDescription('`Not a valid image source. Please try again.`').setColor('2f3136');

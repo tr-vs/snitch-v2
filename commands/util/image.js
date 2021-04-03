@@ -10,7 +10,7 @@ class ImageCommand extends Command {
             category: 'util',
             description : {
                 content : 'Search for an image.',
-                usage : 'img [query]',
+                usage : ['img [query]'],
             },
             args: [
 				{

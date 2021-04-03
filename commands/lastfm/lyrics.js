@@ -62,7 +62,8 @@ class LyricsCommand extends Command {
                         .setColor('#2f3136');
                     return message.util.send(embed);
                 }
-                title = `${data.recenttracks.track[0].name} by ${data.recenttracks.track[0].artist['#text']}`;
+                const name = data.recenttracks.track[0].name.replace(/\(([^)]+)\)/, '');
+                title = `${name} by ${data.recenttracks.track[0].artist['#text']}`;
             }));
         }
         try {

@@ -9,7 +9,7 @@ class EditSnipeCommand extends Command {
 			category: 'util',
 			description : {
 				content : 'View up to 3 recently edited messages',
-				usage : 'editsnipe [1-3]',
+				usage : ['editsnipe [1-3]'],
 			},
 			args: [
 				{

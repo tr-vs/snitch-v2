@@ -14,7 +14,7 @@ class PrefixCommand extends Command {
 	}
 
 	async exec(message) {
-		const embed = new MessageEmbed().setDescription('[Click Here to Invite the Bot](https://discord.com/oauth2/authorize?client_id=733789421727514696&permissions=201648192&scope=bot)').setColor('2f3136');
+		const embed = new MessageEmbed().setDescription('[Click Here to Invite the Bot](https://discord.com/api/oauth2/authorize?client_id=733789421727514696&permissions=1275390016&scope=bot)').setColor('2f3136');
 		return message.util.send(embed);
 	}
 }

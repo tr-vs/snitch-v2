@@ -7,7 +7,7 @@ class EmoteCommand extends Command {
 	constructor() {
 		super('emote', {
 			aliases: ['emote', 'e'],
-			category: 'Misc',
+			category: 'util',
 			description : {
 				content : 'Enlarge an emote to save it if you\'re on mobile.',
 				usage : ['emote [emote]', 'e [emote]'],

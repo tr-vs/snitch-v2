@@ -65,7 +65,7 @@ class MyClient extends AkairoClient {
 			if (!phrase) return null;
 			return parseDuration(phrase);
 		});
-		this.commandHandler.resolver.addType('attachment', (message, phrase) => {
+		this.commandHandler.resolver.addType('ris', (message, phrase) => {
 			const urlType = this.commandHandler.resolver.type('url');
 			const url = urlType(message, phrase);
 
@@ -80,6 +80,28 @@ class MyClient extends AkairoClient {
 			}
 			if (user !== null && user !== undefined) {
 				return user.displayAvatarURL({ format: 'png', dynamic: true });
+			}
+			return null;
+		});
+		this.commandHandler.resolver.addType('ae', (message, phrase) => {
+			const urlType = this.commandHandler.resolver.type('url');
+			const url = urlType(message, phrase);
+
+			let id = phrase.match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/);
+			if (message.attachments.first() !== undefined) {
+				return message.attachments.first().url;
+			}
+			if (!isNaN(phrase)) {
+				id = phrase;
+				return `https://cdn.discordapp.com/emojis/${id}`;
+			}
+
+			if(id !== null && !isNaN(id[3])) {
+				return `https://cdn.discordapp.com/emojis/${id[3]}`;
+			}
+
+			if (url !== null) {
+				return url.href;
 			}
 			return null;
 		});
