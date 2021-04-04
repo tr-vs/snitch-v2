@@ -122,7 +122,12 @@ class WhoKnowsCommand extends Command {
 		if (know1.length === 0) {
 			return message.reply(`No one listens to ${artist} here.`);
 		}
-		artist = data2[0].artist.name;
+		for (const element of data2) {
+			if (element.artist !== undefined) {
+				artist = element.artist.name;
+				break;
+			}
+		}
 		know1 = know1.sort((a, b) => parseInt(b.plays) - parseInt(a.plays));
 		const know = _.first(_.values(know1), 10);
 		const sorted = know[0];
