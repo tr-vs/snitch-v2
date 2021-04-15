@@ -90,7 +90,7 @@ class TopArtistsCommand extends Command {
 			return message.util.send(embed);
 		}
 		for (let i = 0; i < 10; i++) {
-			if (data.topartists.artist[i] == undefined) {
+			if (data.topartists.artist[i] == undefined || data.topartists.artist[i].length == 0) {
 				continue;
 			}
 			const {

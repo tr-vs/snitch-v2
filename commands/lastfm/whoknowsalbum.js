@@ -109,7 +109,8 @@ class WhoKnowsAlbumCommand extends Command {
 			}
 			i++;
 		}
-		const data2 = await Promise.all(request.map(u => fetch(u).then(resp => resp.json())));
+		const promises = await Promise.allSettled(request.map(u => fetch(u).then(resp => resp.json())));
+		const data2 = promises.filter(p => p.status === 'fulfilled').map(p => p.value);
 		// eslint-disable-next-line no-shadow
 		for (let i = 0; i < data2.length; i++) {
 			const userplaycount = data2[i].album.userplaycount;

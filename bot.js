@@ -65,7 +65,13 @@ class MyClient extends AkairoClient {
 			if (!phrase) return null;
 			return parseDuration(phrase);
 		});
-		this.commandHandler.resolver.addType('ris', (message, phrase) => {
+		this.commandHandler.resolver.addType('ris', async (message, phrase) => {
+			try {
+				await message.guild.members.fetch();
+			} catch (err) {
+				console.error(err);
+			}
+
 			const urlType = this.commandHandler.resolver.type('url');
 			const url = urlType(message, phrase);
 

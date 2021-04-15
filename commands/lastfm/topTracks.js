@@ -90,6 +90,9 @@ class TopTracksCommand extends Command {
 			return message.util.send(embed);
 		}
 		for (let i = 0; i < 10; i++) {
+			if (data.toptracks.track[i] == undefined || data.toptracks.track[i].length == 0) {
+				continue;
+			}
 			const {
 				name: album_title,
 				playcount: play_count,

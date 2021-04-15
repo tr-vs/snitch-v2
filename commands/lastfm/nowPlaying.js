@@ -77,9 +77,9 @@ class NowPlayingCommand extends Command {
 			const albumurl = `https://www.last.fm/music/${encodeURIComponent(artist)}/${encodeURIComponent(album)}`;
 
 			let color = '';
-			if (pic !== '') {
+			try {
 				color = await ColorThief.getColor(pic);
-			} else {
+			} catch {
 				color = message.member.displayHexColor;
 			}
 

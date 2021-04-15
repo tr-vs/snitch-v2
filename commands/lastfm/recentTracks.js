@@ -57,7 +57,7 @@ class NowPlayingCommand extends Command {
 			return message.util.send(embed);
 		}
 		for (let i = 0; i < 10; i++) {
-			if (data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
+			if (data.recenttracks.track[i] == undefined || data.recenttracks.track[i].length == 0) {
 				continue;
 			}
 			const {
