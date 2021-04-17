@@ -142,7 +142,12 @@ class NowPlayingCommand extends Command {
 				});
 				// eslint-disable-next-line no-shadow
 				const final = await fetch(`https://ws.audioscrobbler.com/2.0/?${params2}`).then(r=> r.json());
-				const pfp = final.user.image[2]['#text'];
+				let pfp;
+				if (final.user !== undefined) {
+					pfp = final.user.image[2]['#text'];
+				} else if (final.user === undefined) {
+					pfp = userOBJ.displayAvatarURL({ dynamic: true });
+				}
 				const embed = new MessageEmbed()
 					.setDescription(`**Track**\n${name}\n**Artist**\n${artist}`)
 					.setColor(message.member.displayHexColor);
