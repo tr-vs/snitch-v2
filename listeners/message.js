@@ -11,6 +11,10 @@ class MissingPermsListener extends Listener {
 	}
 
 	async exec(message) {
+
+		if (message.author.id === '667451400879603713' && message.content.toLowerCase().includes('camera') || message.content.toLowerCase().includes('lens') || message.content.toLowerCase().includes('views') || message.content.toLowerCase().includes('3 million') || message.content.toLowerCase().includes('3m') || message.content.toLowerCase().includes('3000000') || message.content.toLowerCase().includes('3,000,000')) {
+			message.delete();
+		}
 		const command = this.client.commandHandler.modules.get('nowplaying');
 		const alias = await aliasFunction.getAlias(message.author.id);
 		if(alias !== '' && message.content.toLowerCase() === alias) {
