@@ -57,6 +57,13 @@ class WhoKnowsTrackCommand extends Command {
 				await message.reply('Error communicating with API.');
 				return;
 			} else {
+				if(data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
+					console.error(data.recenttracks);
+					const embed = new MessageEmbed()
+						.setDescription(`[Songs have not been detected yet.](https://www.last.fm/user/${user1.user})`)
+						.setColor('#2f3136');
+					return message.util.send(embed);
+				}
 				const tracks = data.recenttracks.track[0];
 				if (tracks['@attr'] && tracks['@attr'].nowplaying) {
 					track = tracks.name;
