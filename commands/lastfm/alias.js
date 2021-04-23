@@ -3,7 +3,7 @@ const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const aliasFunction = require('../../alias');
 
-class NowPlayingCommand extends Command {
+class AliasCommand extends Command {
 	constructor() {
 		super('alias', {
 			description: {
@@ -48,4 +48,4 @@ class NowPlayingCommand extends Command {
 	}
 }
 
-module.exports = NowPlayingCommand;
+module.exports = AliasCommand;

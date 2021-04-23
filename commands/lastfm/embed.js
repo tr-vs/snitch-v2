@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 const { Argument } = require('discord-akairo');
 const LastFMUser = require('../../models/lfuser.js');
 
-class NowPlayingCommand extends Command {
+class EmbedCommand extends Command {
 	constructor() {
 		super('embed', {
 			description: {
@@ -51,4 +51,4 @@ class NowPlayingCommand extends Command {
 	}
 }
 
-module.exports = NowPlayingCommand;
+module.exports = EmbedCommand;

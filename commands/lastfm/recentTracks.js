@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 const { stringify } = require('querystring');
 const fetch = require('node-fetch');
 
-class NowPlayingCommand extends Command {
+class RecentTracksCommand extends Command {
 	constructor() {
 		super('recenttracks', {
 			description: {
@@ -82,4 +82,4 @@ class NowPlayingCommand extends Command {
 	}
 }
 
-module.exports = NowPlayingCommand;
+module.exports = RecentTracksCommand;

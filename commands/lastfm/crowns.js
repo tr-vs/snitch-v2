@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 const Crown = require('../../models/crowns.js');
 
 
-class SetCommand extends Command {
+class CrownsCommand extends Command {
 	constructor() {
 		super('crowns', {
 			description: {
@@ -117,4 +117,4 @@ class SetCommand extends Command {
 	}
 }
 
-module.exports = SetCommand;
+module.exports = CrownsCommand;
