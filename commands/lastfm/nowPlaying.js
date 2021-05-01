@@ -179,7 +179,7 @@ class NowPlayingCommand extends Command {
 				});
 				request.push(`https://ws.audioscrobbler.com/2.0/?${params3}`);
 				const final = await Promise.all(request.map(u => fetch(u).then(resp => resp.json())));
-				if(final[0].track == undefined || final[0].track.userplaycount == undefined) {
+				if(final[0].track?.userplaycount == undefined || final[1].artist?.stats.userplaycount == undefined) {
 					const embed = new MessageEmbed()
 						.setAuthor(`${settings.user}`, authorAv)
 						.setDescription(`[${name}](${trackurl})\nby [${artist}](${artisturl})\non [${album}](${albumurl})`)

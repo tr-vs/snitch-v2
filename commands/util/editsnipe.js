@@ -15,6 +15,7 @@ class EditSnipeCommand extends Command {
 				{
 					id: 'edit',
 					default: 1,
+					type: 'integer',
 				},
 			],
 

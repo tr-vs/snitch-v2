@@ -15,6 +15,7 @@ class SnipeCommand extends Command {
 				{
 					id: 'snipe',
 					default: 1,
+					type: 'integer',
 
 				},
 			],

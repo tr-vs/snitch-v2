@@ -28,5 +28,8 @@
     "tiktok-scraper": "^1.4.10",
     "underscore": "^1.12.0",
     "urban": "^0.3.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.13.14"
   }
 }
