@@ -1,6 +1,7 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
+
 class AnimeSearchCommand extends Command {
 	constructor() {
 		super('asearch', {
@@ -14,27 +15,6 @@ class AnimeSearchCommand extends Command {
 				{
 					id: 'anime',
 					type: 'string',
-					prompt: {
-						timeout: () => {
-							const embed = new MessageEmbed().setDescription('\'Time ran out, command has been cancelled.\'').setColor('2f3136');
-							return embed;
-						},
-						ended: () => {
-							const embed = new MessageEmbed().setDescription('\'Too many retries, command has been cancelled.\'').setColor('2f3136');
-							return embed;
-						},
-						cancel: () => {
-							const embed = new MessageEmbed().setDescription('`Command has been cancelled.`').setColor('2f3136');
-							return embed;
-						},
-						start: () => {
-							const embed = new MessageEmbed().setDescription('`Which anime would you like to learn about?`').setColor('2f3136').setFooter('Send \'cancel\' to cancel the command.');
-							return embed;
-						},
-						retries: 4,
-						time: 30000,
-						cancelWord: 'cancel',
-					},
 					match: 'content',
 				},
 			],

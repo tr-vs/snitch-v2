@@ -1,7 +1,7 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 
-class PrefixCommand extends Command {
+class InviteCommand extends Command {
 	constructor() {
 		super('invite', {
 			aliases: ['invite', 'inv'],
@@ -19,4 +19,4 @@ class PrefixCommand extends Command {
 	}
 }
 
-module.exports = PrefixCommand;
+module.exports = InviteCommand;

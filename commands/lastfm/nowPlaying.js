@@ -29,7 +29,10 @@ class NowPlayingCommand extends Command {
 	async exec(message, args) {
 		let id = '';
 		let userOBJ = '';
-		if (!message.content.includes(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
+		if (message.channel.type === 'dm' && !message.content.includes('+')) {
+			id = message.author.id;
+			userOBJ = message.author;
+		} else if (!message.content.includes(this.client.settings.get(message.guild.id, 'prefix', '+'))) {
 			id = message.author.id;
 			userOBJ = message.author;
 		} else {

@@ -1,7 +1,7 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 
-class PingCommand extends Command {
+class CoinFlipCommand extends Command {
 	constructor() {
 		super('coinflip', {
 			aliases: ['coinflip', 'cf'],
@@ -36,4 +36,4 @@ class PingCommand extends Command {
 	}
 }
 
-module.exports = PingCommand;
+module.exports = CoinFlipCommand;
