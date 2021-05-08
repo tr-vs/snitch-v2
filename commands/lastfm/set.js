@@ -11,7 +11,7 @@ class SetCommand extends Command {
 		super('set', {
 			description: {
 				content: 'Connect your last.fm acc.',
-				usage: ['lastfm set', 'lf set'],
+				usage: ['lastfm set [LF user]', 'lf set [LF user]'],
 				aliases: ['set'],
 			},
 			args: [

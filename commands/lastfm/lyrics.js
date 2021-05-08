@@ -77,7 +77,13 @@ class LyricsCommand extends Command {
             };
             const body = await fetch(url, { headers });
             const result = await body.json();
-            const song = result.response.hits[0].result;
+            const song = result.response.hits[0]?.result;
+            if (song === undefined) {
+                const embed = new MessageEmbed()
+                    .setDescription('`My bad, I ran into an error or there were no results. Try again in a few moments.`')
+                    .setColor('#2f3136');
+                return message.util.send(embed);
+            }
             let lyrics = '';
             for (let i = 1; i < 6; i++) {
                 const response = await fetch(song.url);
