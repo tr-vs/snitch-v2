@@ -35,7 +35,7 @@ class SnitchAddCommand extends Command {
                 sent.delete({ timeout: 2000 });
             });
 		}
-		
+		console.log('bruh')
 		const term = await termFunction.removeTerm(message.author.id, message.guild.id, args.term.toLowerCase());
 
 		if (term >0) {

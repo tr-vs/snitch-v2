@@ -42,13 +42,24 @@ module.exports.setTerm = async (userID, guildID, term) => {
 };
 
 module.exports.getUserTerm = async (userID, guildID) => {
+	let cachedTerms = [];
+
+	if (termCache?.[guildID] !== undefined) {
+		cachedTerms = termCache[guildID].filter(element => element.userID === userID);
+	}
+	if (cachedTerms && cachedTerms.length !== 0) {
+		let terms = [];
+		cachedTerms.forEach(element =>{
+			terms.push(element.term);
+		})
+		return terms;
+	}
+
 	const result = await snitchTerm.find({
         guildID,
 		userID,
 	});
-
 	let terms = [];
-
 	result.forEach(element =>{
 		terms.push(element.term);
 	})
@@ -62,5 +73,14 @@ module.exports.removeTerm = async (userID, guildID, term) => {
 		term
 	});
 
-	return result.deletedCount;
+	const deletes = result.deletedCount;
+
+	const terms = await snitchTerm.find({
+		guildID,
+	});
+	termCache[guildID] = terms;
+
+	return deletes;
+
+	
 }
