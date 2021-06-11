@@ -12,8 +12,8 @@ class JuulCommand extends Command {
 				subcommands: [
 					['pass', 'pass'],
 					['fetch', 'fetch'],
-					['juulban', 'ban'],
-					['juulunban', 'unban'],
+					['ban', 'ban'],
+					['unban', 'unban'],
 					['status', 'status'],
 					['record', 'record'],
 					['hit', 'hit'],
@@ -33,8 +33,8 @@ class JuulCommand extends Command {
 			type: [
 				['pass', 'pass'],
 				['fetch', 'fetch'],
-				['juulban', 'ban'],
-				['juulunban', 'unban'],
+				['ban', 'ban'],
+				['unban', 'unban'],
 				['status', 'status'],
 				['record', 'record'],
 				['hit', 'hit'],

@@ -4,7 +4,7 @@ const juulBans = require('../../models/juulBans.js');
 
 class JuulUnbanCommand extends Command {
 	constructor() {
-		super('juulunban', {
+		super('unban', {
 			description: {
 				content: 'Unban someone from the JUUL.',
 				usage: ['JUUL unban'],
