@@ -89,7 +89,21 @@ class LyricsCommand extends Command {
                 const response = await fetch(song.url);
                 const text = await response.text();
                 const $ = cheerio.load(text);
-                lyrics = $('.lyrics').text().trim();
+                
+                
+                lyrics = $('div[class="lyrics"]').text().trim();
+                if (!lyrics) {
+                    lyrics = ''
+                    $('div[class^="Lyrics__Container"]').each((i, elem) => {
+                        if($(elem).text().length !== 0) {
+                            let snippet = $(elem).html()
+                            .replace(/<br>/g, '\n')
+                            .replace(/<(?!\s*br\s*\/?)[^>]+>/gi, '');
+                            lyrics += $('<textarea/>').html(snippet).text().trim() + '\n\n';
+                        }   
+                    })
+                }
+                lyrics.trim();
                 if (lyrics.length !== 0) break;
             }
             if (lyrics.length > 2048) {

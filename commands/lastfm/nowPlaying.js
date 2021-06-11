@@ -61,10 +61,9 @@ class NowPlayingCommand extends Command {
 		const result = await fetch(`https://ws.audioscrobbler.com/2.0/?${params}`).then(r=> r.json().then(async function(data) {
 			if (data.error) {
 				await message.reply('Error fetching info from last.fm.');
-				console.error(data);
 				return;
 			}
-			if(data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {
+			if(data.recenttracks.track[0] == undefined) {
 				console.error(data.recenttracks);
 				const embed = new MessageEmbed()
 					.setDescription(`[Songs have not been detected.](https://www.last.fm/user/${settings.user})`)

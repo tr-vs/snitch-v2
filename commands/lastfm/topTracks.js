@@ -80,7 +80,6 @@ class TopTracksCommand extends Command {
 		let response = '';
 		if (data.error) {
 			await message.reply('Error fetching info from last.fm.');
-			console.error(data);
 			return;
 		}
 		if(data.toptracks.track[0] == undefined || data.toptracks.track[0].length == 0) {

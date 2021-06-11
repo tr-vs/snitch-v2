@@ -47,7 +47,6 @@ class RecentTracksCommand extends Command {
 		let response = '';
 		if (data.error) {
 			await message.reply('Error fetching info from last.fm.');
-			console.error(data);
 			return;
 		}
 		if(data.recenttracks.track[0] == undefined || data.recenttracks.track[0].length == 0) {

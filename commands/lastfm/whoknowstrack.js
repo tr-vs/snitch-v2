@@ -31,6 +31,12 @@ class WhoKnowsTrackCommand extends Command {
 		try {
 			await message.guild.members.fetch();
 		} catch (err) {
+			if (message.channel.type === 'dm') {
+				const embed = new MessageEmbed()
+					.setDescription('`You cannot run this command in my DMs...`')
+					.setColor('#2f3136');
+				return message.util.send(embed);
+			}
 			console.error(err);
 		}
 		const user1 = await LastFMUser.findOne({

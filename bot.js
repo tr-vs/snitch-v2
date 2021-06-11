@@ -132,20 +132,6 @@ class MyClient extends AkairoClient {
 			const res = phrase.replace(/[\d+\s]/g, '');
 			return items[res.toLowerCase()];
 		});
-		this.commandHandler.resolver.addType('tiktokUser', async (message, phrase) => {
-			if (!phrase) return null;
-			try {
-				const user = await TikTokScraper.getUserProfileInfo(phrase, {
-					// eslint-disable-next-line no-undef
-					proxy: proxies,
-					sessionList: ['sid_tt=9433c469696aecfb8110bdf54ccaa036', 'sid_tt=0c4eb7ec6643b1ebf98f173d3904418c'],
-				});
-				return user;
-			} catch (error) {
-				console.log(error);
-				return null;
-			}
-		});
 		this.commandHandler.loadAll();
 		this.inhibitorHandler = new InhibitorHandler(this, {
 			directory: './inhibitors/',
