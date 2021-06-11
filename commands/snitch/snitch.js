@@ -8,7 +8,7 @@ class SnitchCommand extends Command {
 			category: 'Snitch✧',
 			description: {
 				content: 'lol',
-				usage: ['snitch add'],
+				usage: ['snitch add', 'snitch list'],
 				subcommands: [
 					['add', 'add'],
 					['list', 'list'],

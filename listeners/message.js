@@ -16,7 +16,7 @@ class MissingPermsListener extends Listener {
 		if (message.channel.type !== 'dm') {
 			const x = await termFunction.getTerm(message.guild.id);
 			for (const term of x) {
-				if (message.content.toLowerCase().includes(term.term) && message.auhor !== term.userID) {
+				if (message.content.toLowerCase().includes(term.term) && message.author.id !== term.userID && !message.author.bot) {
 					const target= await this.client.users.fetch(term.userID);
 					const embed = new MessageEmbed()
 						.setAuthor(`Sent by ${message.author.tag}`, message.author.displayAvatarURL())

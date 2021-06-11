@@ -6,7 +6,7 @@ class SnitchAddCommand extends Command {
 	constructor() {
 		super('add', {
 			description: {
-				content: 'Add a term in which if sent in the guild, the bot will DM you.',
+				content: 'Add a term which the bot will DM you if sent in a guild.',
 				usage: ['snitch add [term]'],
 				aliases: ['add'],
 			},
