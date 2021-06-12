@@ -1,5 +1,4 @@
 const snitchTerm = require('./models/snitchTerms.js');
-const snitchTerms = require('./models/snitchTerms.js');
 const mongoose = require('mongoose');
 const termCache = {};
 
@@ -21,7 +20,7 @@ module.exports.getTerm = async (guildID) => {
 };
 
 module.exports.setTerm = async (userID, guildID, term) => {
-	const terms = new snitchTerms({
+	const terms = new snitchTerm({
 		_id: mongoose.Types.ObjectId(),
 		userID,
 		guildID,
@@ -83,4 +82,20 @@ module.exports.removeTerm = async (userID, guildID, term) => {
 	return deletes;
 
 	
+}
+
+module.exports.removeAllTerms = async (userID, guildID) => {
+	const result = await snitchTerm.deleteMany({
+		userID,
+		guildID,
+	});
+
+	const deletes = result.deletedCount;
+
+	const terms = await snitchTerm.find({
+		guildID,
+	});
+	termCache[guildID] = terms;
+
+	return deletes;
 }

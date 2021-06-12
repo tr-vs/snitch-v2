@@ -1,5 +1,6 @@
 const { Listener } = require('discord-akairo');
 const Crown = require('../models/crowns');
+const termFunction = require('../term');
 
 class GuildMemberRemoveListener extends Listener {
 	constructor() {
@@ -17,6 +18,8 @@ class GuildMemberRemoveListener extends Listener {
 		}, (err) => {
 			if(err) console.error(err);
 		});
+
+		const term = await termFunction.removeAllTerms(member.user.id, member.guild.id);
 	}
 }
 
