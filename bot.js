@@ -221,4 +221,18 @@ module.exports.check = async () => {
 client.snipes = new Map();
 client.edits = new Map();
 
+process.on("unhandledRejection", async error => {
+    const errorName = error.message;
+    const errorChannel = error.path?.slice(1,9);
+	const channelID = error.path?.slice(10, 28);
+
+    if (errorChannel === 'channels') {
+
+        const messages = await client.channels.cache.get(channelID).messages.fetch({ limit: 3 })
+  		.catch(console.error);
+
+		console.error(`------------------------------------------------\nError Name: ${errorName}\n\nMessages causing error:${messages.map(x => ' ' +  x.content)}\n------------------------------------------------`);
+    }
+});
+
 client.login(token);

@@ -26,9 +26,12 @@ class MissingPermsListener extends Listener {
 							{ name:'Link:', value: `[Click to jump to the message](${message.url})`, inline: true },
 						)
 						.setTimestamp()
-						.setColor('#2f3136');
+						.setColor('#2f3136')
+						.setFooter(`Server: ${message.guild.name}`, message.guild.icon);
 					return target.send({ embed })
-					.catch(_ => {});
+					.catch(err => {
+						console.error(err);
+					});
 				}
 			}
 		}

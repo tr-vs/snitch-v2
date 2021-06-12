@@ -58,7 +58,7 @@ class HelpCommand extends Command {
 			const list = args.cmd.command.category.filter(command=> command.id != args.cmd.command.id);
 			let cmds = '';
 			for (const command of list.values()) {
-				cmds += `\`${args.cmd.command.id} ${command.id} ៸៸ ${command.description.content}\`\n`;
+				cmds += `\`${args.cmd.command.id} ${command.description.aliases[0]} ៸៸ ${command.description.content}\`\n`;
 			}
 			embed.addField('⪩ Subcommands', cmds || '\u200b');
 		} else {
