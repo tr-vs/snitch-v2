@@ -11,8 +11,14 @@ class MessageDeleteListener extends Listener {
 	exec(message) {
 		if(message.author.bot) return;
 		const snipes = message.client.snipes.get(message.channel.id) || [];
+
+		let content = message.content;
+		if (content.length > 2048) {
+			content = content.slice(0, 2040);
+			content += '...';
+		}
 		snipes.unshift({
-			content: message.content,
+			content,
 			author: message.author,
 			image: message.attachments.first() ? message.attachments.first().proxyURL : null,
 		});
