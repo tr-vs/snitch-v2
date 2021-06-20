@@ -29,9 +29,7 @@ class MissingPermsListener extends Listener {
 						.setColor('#2f3136')
 						.setFooter(`Server: ${message.guild.name}`, message.guild.iconURL());
 					return target.send({ embed })
-					.catch(err => {
-						console.error(err);
-					});
+					.catch(_ =>{});
 				}
 			}
 		}

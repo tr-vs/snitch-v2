@@ -127,6 +127,7 @@ class LyricsCommand extends Command {
             message.util.send(embed);
         } catch (error) {
             console.error(error);
+            console.log("Lyric embed too long");
             const embed = new MessageEmbed()
 				.setDescription('`My bad, I ran into an error or there were no results. Try again in a few moments.`')
 				.setColor('#2f3136');

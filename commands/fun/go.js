@@ -43,7 +43,7 @@ class GOCommand extends Command {
 
 
 	const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-	message.channel.send(attachment);
+		message.channel.send(attachment);
 	}
 }
 
