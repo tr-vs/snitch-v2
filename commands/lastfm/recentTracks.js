@@ -56,9 +56,9 @@ class RecentTracksCommand extends Command {
 			return message.util.send(embed);
 		}
 		for (let i = 0; i < 10; i++) {
-			if (data.recenttracks.track[i] == undefined || data.recenttracks.track[i].length == 0) {
-				continue;
-			}
+			if (data.recenttracks.track[i] == undefined || data.recenttracks.track[i].length == 0) continue;
+			if (response.length > 2048) continue;
+			
 			const {
 				name: name,
 				url: url,
