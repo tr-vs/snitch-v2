@@ -221,16 +221,18 @@ module.exports.check = async () => {
 client.snipes = new Map();
 client.edits = new Map();
 
-process.on("unhandledRejection", async error => {
+/*process.on("unhandledRejection", async error => {
     const errorName = error.message;
 	const channelID = error.path?.slice(10, 28);
-	try {
-		const messages = await client.channels.cache.get(channelID).messages.fetch({ limit: 3 });
-
-		console.error(`------------------------------------------------\nError Name: ${errorName}\n\nMessages causing error:${messages.map(x => ' ' +  x.content)}\n------------------------------------------------`);
-	} catch (err) {
-		console.error(err);
+	if (channelID !== undefined) {
+		try {
+			const messages = await client.channels.cache.get(channelID).messages.fetch({ limit: 3 });
+	
+			console.error(`------------------------------------------------\nError Name: ${errorName}\n\nMessages causing error:${messages.map(x => ' ' +  x.content)}\n------------------------------------------------`);
+		} catch (err) {
+			console.error(err);
+		}
 	}
-});
+});*/
 
 client.login(token);

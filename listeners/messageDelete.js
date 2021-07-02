@@ -8,7 +8,7 @@ class MessageDeleteListener extends Listener {
 		});
 	}
 
-	exec(message) {
+	async exec(message) {
 		if(message.author.bot) return;
 		const snipes = message.client.snipes.get(message.channel.id) || [];
 
@@ -17,11 +17,25 @@ class MessageDeleteListener extends Listener {
 			content = content.slice(0, 2040);
 			content += '...';
 		}
-		snipes.unshift({
-			content,
-			author: message.author,
-			image: message.attachments.first() ? message.attachments.first().proxyURL : null,
-		});
+		if (message.reference === null) {
+			snipes.unshift({
+				content,
+				author: message.author,
+				image: message.attachments.first() ? message.attachments.first().proxyURL : null,
+				reference: false,
+			});
+		} else {
+			const reference = await this.client.channels.cache.get(message.reference.channelID).messages.fetch(message.reference.messageID);
+			snipes.unshift({
+				content,
+				author: message.author,
+				image: message.attachments.first() ? message.attachments.first().proxyURL : null,
+				reference: true,
+				referenceContent: reference.content,
+				referenceAuthor: reference.author,
+				referenceImage: reference.attachments.first() ? reference.attachments.first().proxyURL : null,
+			});
+		}
 		snipes.splice(3);
 		message.client.snipes.set(message.channel.id, snipes);
 	}

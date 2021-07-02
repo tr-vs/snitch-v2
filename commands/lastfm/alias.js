@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
-const aliasFunction = require('../../alias');
+const aliasFunction = require('../../Functions/alias');
 
 class AliasCommand extends Command {
 	constructor() {

@@ -1,6 +1,6 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
-const termFunction = require('../../term');
+const termFunction = require('../../Functions/term');
 
 class SnitchAddCommand extends Command {
 	constructor() {

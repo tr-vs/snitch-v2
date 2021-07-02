@@ -1,6 +1,6 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
-const econ = require('../../econ');
+const econ = require('../../Functions/econ');
 const list = ['mango pod', 'creme pod', 'menthol pod', 'fruit pod', 'cucumber pod', 'black airforce'];
 const Fuse = require('fuse.js');
 

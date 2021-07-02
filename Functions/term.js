@@ -1,4 +1,4 @@
-const snitchTerm = require('./models/snitchTerms.js');
+const snitchTerm = require('../models/snitchTerms.js');
 const mongoose = require('mongoose');
 const termCache = {};
 

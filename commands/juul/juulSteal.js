@@ -1,6 +1,6 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
-const econ = require('../../econ');
+const econ = require('../../Functions/econ');
 const juul = require('../../models/juul.js');
 const juulBans = require('../../models/juulBans.js');
 

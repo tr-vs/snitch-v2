@@ -93,6 +93,8 @@ class TopArtistsCommand extends Command {
 			if (data.topartists.artist[i] == undefined || data.topartists.artist[i].length == 0) {
 				continue;
 			}
+			if (response.length > 2048) continue;
+			
 			const {
 				name: album_title,
 				playcount: play_count,

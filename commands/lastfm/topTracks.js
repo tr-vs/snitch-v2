@@ -92,6 +92,8 @@ class TopTracksCommand extends Command {
 			if (data.toptracks.track[i] == undefined || data.toptracks.track[i].length == 0) {
 				continue;
 			}
+			if (response.length > 2048) continue;
+			
 			const {
 				name: album_title,
 				playcount: play_count,

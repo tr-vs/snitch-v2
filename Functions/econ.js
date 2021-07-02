@@ -1,4 +1,4 @@
-const bal = require('./models/userInventory');
+const bal = require('../models/userInventory');
 const mongoose = require('mongoose');
 const balCache = {};
 

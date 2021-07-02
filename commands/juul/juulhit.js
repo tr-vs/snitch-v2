@@ -1,7 +1,7 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const juul = require('../../models/juul.js');
-const econ = require('../../econ');
+const econ = require('../../Functions/econ');
 
 class JuulHitCommand extends Command {
 	constructor() {

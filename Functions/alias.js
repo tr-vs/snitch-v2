@@ -1,4 +1,4 @@
-const LastFMUser = require('./models/lfuser.js');
+const LastFMUser = require('../models/lfuser.js');
 const aliasCache = {};
 
 module.exports.getAlias = async (userID) => {

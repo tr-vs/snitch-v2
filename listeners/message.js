@@ -1,7 +1,7 @@
 const { Listener } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
-const aliasFunction = require('../alias');
-const termFunction = require('../term.js');
+const aliasFunction = require('../Functions/alias');
+const termFunction = require('../Functions/term');
 
 class MissingPermsListener extends Listener {
 	constructor() {
