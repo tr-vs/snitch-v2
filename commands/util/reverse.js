@@ -56,7 +56,7 @@ class ReverseImageSearchCommand extends Command {
             urlList.push(urls);
         });
 
-        $('.aCOpRe').each((x, url) => {
+        $('.IsZvec').each((x, url) => {
             const description = $(url).text();
             descriptionList.push(description);
         });
