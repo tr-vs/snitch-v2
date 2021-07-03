@@ -36,7 +36,15 @@ class JuulHitCommand extends Command {
 						}
 						const fuse = new Fuse(list);
 						const result = fuse.search(res);
-						const embed = new MessageEmbed().setDescription(`Could not find \`${res}\`.\n\n**Did you mean:**\n${this.handler.prefix(message)}JUUL buy \`${result[0].item}${count}\`?`).setColor('2f3136');
+						if (result[0] == undefined) {
+							const embed = new MessageEmbed()
+								.setDescription(`Could not find \`${res}\``)
+								.setColor('2f3136');
+							return { embed };
+						}
+						const embed = new MessageEmbed()
+							.setDescription(`Could not find \`${res}\`.\n\n**Did you mean:**\n${this.handler.prefix(message)}JUUL buy \`${result[0].item}${count}\`?`)
+							.setColor('2f3136');
 						return { embed };
 					},
 				},
