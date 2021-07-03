@@ -26,16 +26,26 @@ class MessageUpdateListener extends Listener {
 				reference: false,
 			});
 		} else {
-			const reference = await this.client.channels.cache.get(message.reference.channelID).messages.fetch(message.reference.messageID);
-			edits.unshift({
-				content,
-				author: message.author,
-				image: message.attachments.first() ? message.attachments.first().proxyURL : null,
-				reference: true,
-				referenceContent: reference.content,
-				referenceAuthor: reference.author,
-				referenceImage: reference.attachments.first() ? reference.attachments.first().proxyURL : null,
-			});
+			try {
+				const reference = await this.client.channels.cache.get(message.reference.channelID).messages.fetch(message.reference.messageID);
+				
+				edits.unshift({
+					content,
+					author: message.author,
+					image: message.attachments.first() ? message.attachments.first().proxyURL : null,
+					reference: true,
+					referenceContent: reference.content,
+					referenceAuthor: reference.author,
+					referenceImage: reference.attachments.first() ? reference.attachments.first().proxyURL : null,
+				});
+			} catch (error) {
+				edits.unshift({
+					content,
+					author: message.author,
+					image: message.attachments.first() ? message.attachments.first().proxyURL : null,
+					reference: false,
+				});
+			}
 		}
 		
 		edits.splice(3);

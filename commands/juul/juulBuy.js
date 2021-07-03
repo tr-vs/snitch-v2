@@ -17,7 +17,7 @@ class JuulHitCommand extends Command {
 				{
 					id: 'quantity',
 					match: 'content',
-					type: (phrase) => {
+					type: (message, phrase) => {
 						const res = phrase.replace(/\D/g, '');
 						if (res == '') return 1;
 						return res;
