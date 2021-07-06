@@ -10,7 +10,7 @@ class JuulUnbanCommand extends Command {
 				usage: ['JUUL unban'],
 				aliases: ['unban'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 			userPermissions: 'BAN_MEMBERS',
 			args: [
 				{

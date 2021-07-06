@@ -35,7 +35,13 @@ class HelpCommand extends Command {
 					`⪩ ${category.id.replace(/(\b\w)/gi, (lc) => lc.toUpperCase())}`,
 					`${category
 						.filter((cmd) => cmd.aliases.length > 0)
-						.map((cmd) => `\`${cmd.aliases[0]}\``)
+						.map((cmd) => {
+							if (cmd.subcmd) {
+								return `\`${cmd.aliases[0]}✧\``
+							} else {
+								return `\`${cmd.aliases[0]}\``
+							}
+						})
 						.join(' ')}`,
 				);
 			}
@@ -55,8 +61,10 @@ class HelpCommand extends Command {
 			.setColor('2f3136')
 			.setTitle(`${args.cmd.command.id}`);
 		if (args.cmd.command.subcmd) {
-			const list = args.cmd.command.category.filter(command=> command.id != args.cmd.command.id);
+			const length = args.cmd.command.id.length;
+			const list = args.cmd.command.category.filter(command=> (command.description.usage[0].substring(0,length).toLowerCase() == args.cmd.command.id.toLowerCase()) && !command.subcmd);
 			let cmds = '';
+			console.log(list);
 			for (const command of list.values()) {
 				cmds += `\`${args.cmd.command.id} ${command.description.aliases[0]} ៸៸ ${command.description.content}\`\n`;
 			}

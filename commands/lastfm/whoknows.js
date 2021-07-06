@@ -121,7 +121,7 @@ class WhoKnowsCommand extends Command {
 				continue;
 			}
 			const userplaycount = data2[i].artist.stats.userplaycount;
-			if (userplaycount !== 0 && userplaycount !== undefined) {
+			if (userplaycount != 0 && userplaycount !== undefined) {
 				know1.push({
 					member: info[i].member, plays: userplaycount, user: info[i].user,
 				});

@@ -11,7 +11,7 @@ class JuulHitCommand extends Command {
 				usage: ['JUUL hit'],
 				aliases: ['hit'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 		});
 	}
 

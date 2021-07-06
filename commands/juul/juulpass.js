@@ -11,7 +11,7 @@ class JuulPassCommand extends Command {
 				usage: ['JUUL pass'],
 				aliases: ['pass'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 			args: [
 				{
 					id: 'ping',
@@ -76,11 +76,12 @@ class JuulPassCommand extends Command {
 		if (message.member.displayName && message.member.displayName.includes('[JUUL]')) {
 			const str = message.member.displayName;
 			const name = str.replace('[JUUL]', '');
-			message.member.setNickname(name);
+			message.member.setNickname(name)
 		}
 
 		const name = args.ping.displayName;
-		args.ping.setNickname(`[JUUL] ${name}`);
+		args.ping.setNickname(`[JUUL] ${name}`)
+		.catch(_ => {});
 		if (count === 420) {
 			const embed = new MessageEmbed()
 				.setTitle('JUUL Passed')

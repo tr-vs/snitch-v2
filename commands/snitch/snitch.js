@@ -5,7 +5,7 @@ class SnitchCommand extends Command {
 	constructor() {
 		super('snitch', {
 			aliases: ['snitch'],
-			category: 'Snitch✧',
+			category: 'util',
 			description: {
 				content: 'lol',
 				usage: ['snitch add', 'snitch list'],

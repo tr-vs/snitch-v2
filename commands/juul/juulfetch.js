@@ -11,7 +11,7 @@ class JuulFetchCommand extends Command {
 				usage: ['JUUL fetch'],
 				aliases: ['fetch'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 		});
 	}
 

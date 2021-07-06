@@ -20,7 +20,7 @@ class SnitchAddCommand extends Command {
 					},
 				},
 			],
-			category: 'Snitch✧',
+			category: 'util',
 		});
 	}
 

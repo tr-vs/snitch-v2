@@ -10,7 +10,7 @@ class JuulRecordCommand extends Command {
 				usage: ['JUUL leaderboard'],
 				aliases: ['leaderboard', 'lb'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 		});
 	}
 

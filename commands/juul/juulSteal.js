@@ -12,7 +12,7 @@ class JuulStealCommand extends Command {
 				usage: ['JUUL steal'],
 				aliases: ['steal'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 		});
 	}
 

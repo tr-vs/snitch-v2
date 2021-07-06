@@ -10,7 +10,7 @@ class JuulBanCommand extends Command {
 				usage: ['JUUL balance <member>', 'JUUL bal'],
 				aliases: ['balance', 'bal'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 			args: [
 				{
 					id: 'ping',

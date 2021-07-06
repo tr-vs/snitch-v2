@@ -3,9 +3,9 @@ const { MessageEmbed } = require('discord.js');
 
 class JuulCommand extends Command {
 	constructor() {
-		super('juul', {
+		super('JUUL', {
 			aliases: ['juul'],
-			category: 'JUUL✧',
+			category: 'fun',
 			description: {
 				content: 'lol',
 				usage: ['JUUL hit', 'JUUL pass'],

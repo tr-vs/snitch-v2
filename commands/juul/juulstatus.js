@@ -10,7 +10,7 @@ class JuulStatusCommand extends Command {
 				usage: ['JUUL status'],
 				aliases: ['status'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 		});
 	}
 

@@ -10,7 +10,7 @@ class JuulHitCommand extends Command {
 				usage: ['JUUL shop'],
 				aliases: ['shop'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 		});
 	}
 

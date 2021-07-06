@@ -10,7 +10,7 @@ class SnitchAddCommand extends Command {
 				usage: ['snitch list'],
 				aliases: ['list'],
 			},
-			category: 'Snitch✧',
+			category: 'util',
 		});
 	}
 

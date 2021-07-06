@@ -11,7 +11,7 @@ class JuulBanCommand extends Command {
 				usage: ['JUUL ban'],
 				aliases: ['ban'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 			userPermissions: 'BAN_MEMBERS',
 			args: [
 				{

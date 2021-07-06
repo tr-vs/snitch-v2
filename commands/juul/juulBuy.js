@@ -12,7 +12,7 @@ class JuulHitCommand extends Command {
 				usage: ['JUUL buy [pods|item]'],
 				aliases: ['buy'],
 			},
-			category: 'JUUL✧',
+			category: 'fun',
 			args: [
 				{
 					id: 'quantity',
