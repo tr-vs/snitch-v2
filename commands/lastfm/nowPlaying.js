@@ -20,7 +20,7 @@ class NowPlayingCommand extends Command {
 					type: 'user',
 				},
 			],
-			category: 'Last FM✧',
+			category: 'Last FM',
 			aliases: ['np'],
 			typing: true,
 		});

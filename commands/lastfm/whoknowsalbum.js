@@ -13,7 +13,7 @@ class WhoKnowsAlbumCommand extends Command {
 				usage: ['lastfm whoknowsalbum [album] <artist>', 'lf wka'],
 				aliases: ['wka', 'whoknowsalbum'],
 			},
-			category: 'Last FM✧',
+			category: 'Last FM',
 			typing: true,
 			args: [
 				{

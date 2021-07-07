@@ -12,7 +12,7 @@ class PlayingCommand extends Command {
 				usage: ['lastfm playing', 'lf playing'],
 				aliases: ['playing'],
 			},
-			category: 'Last FM✧',
+			category: 'Last FM',
 			typing: true,
 			cooldown: 30000,
             ratelimit: 1,

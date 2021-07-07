@@ -4,7 +4,7 @@ class LFCommand extends Command {
 	constructor() {
 		super('lastfm', {
 			aliases: ['lastfm', 'lf'],
-			category: 'Last FM✧',
+			category: 'Last FM',
 			description: {
 				content: 'lol',
 				usage: ['lastfm nowplaying', 'lf whoknows'],

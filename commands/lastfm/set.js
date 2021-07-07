@@ -24,7 +24,7 @@ class SetCommand extends Command {
 					},
 				},
 			],
-			category: 'Last FM✧',
+			category: 'Last FM',
 		});
 	}
 

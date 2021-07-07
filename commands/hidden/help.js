@@ -27,7 +27,7 @@ class HelpCommand extends Command {
 				.setColor('2f3136')
 				.setTitle('help')
 				.setDescription(`✧ indicates there are subcommands.\n${this.handler.prefix(message)}help [cmd] or ${this.handler.prefix(message)}help [cmd] [subcmd] for more info.`)
-				.setFooter(`${this.handler.modules.size} total commands.`);
+				.setFooter(`Visit https://snitch.wtf to invite the bot!`);
 			const list = this.handler.categories.filter(category => category.id !== 'hide' && category.id !== 'Misc');
 			const misc = this.handler.categories.filter(category => category.id == 'Misc');
 			for (const category of list.values()) {

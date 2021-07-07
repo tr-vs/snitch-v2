@@ -17,7 +17,7 @@ class CrownsCommand extends Command {
 					type: 'member',
 				},
 			],
-			category: 'Last FM✧',
+			category: 'Last FM',
 		});
 	}
 

@@ -22,7 +22,7 @@ class EmbedCommand extends Command {
 					},
 				},
 			],
-			category: 'Last FM✧',
+			category: 'Last FM',
 		});
 	}
 

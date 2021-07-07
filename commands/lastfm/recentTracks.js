@@ -18,7 +18,7 @@ class RecentTracksCommand extends Command {
 					type: 'member',
 				},
 			],
-			category: 'Last FM✧',
+			category: 'Last FM',
 			typing: true,
 		});
 	}

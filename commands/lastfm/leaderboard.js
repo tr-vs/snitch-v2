@@ -10,7 +10,7 @@ class LFLeaderBoardCommand extends Command {
 				usage: ['lastfm leaderboard', 'lf lb'],
 				aliases: ['leaderboard', 'lb'],
 			},
-			category: 'Last FM✧',
+			category: 'Last FM',
 		});
 	}
 

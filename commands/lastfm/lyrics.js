@@ -21,7 +21,7 @@ class LyricsCommand extends Command {
 					match: 'content',
 				},
 			],
-			category: 'Last FM✧',
+			category: 'Last FM',
 			typing: true,
             cooldown: 30000,
 		});

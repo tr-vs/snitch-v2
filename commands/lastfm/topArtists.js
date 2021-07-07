@@ -24,7 +24,7 @@ class TopArtistsCommand extends Command {
 					match: 'content',
 				},
 			],
-			category: 'Last FM✧',
+			category: 'Last FM',
 		});
 	}
 
