@@ -56,9 +56,7 @@ class SetCommand extends Command {
 					embed: 1,
 				});
 
-				lfu.save()
-					.then(result => console.log(result))
-					.catch(err => console.error(err));
+				lfu.save().catch(err => console.error(err));
 
 				const embed = new MessageEmbed()
 					.setDescription('`Last.FM account successfully connected.`')
