@@ -64,7 +64,6 @@ class HelpCommand extends Command {
 			const length = args.cmd.command.id.length;
 			const list = args.cmd.command.category.filter(command=> (command.description.usage[0].substring(0,length).toLowerCase() == args.cmd.command.id.toLowerCase()) && !command.subcmd);
 			let cmds = '';
-			console.log(list);
 			for (const command of list.values()) {
 				cmds += `\`${args.cmd.command.id} ${command.description.aliases[0]} ៸៸ ${command.description.content}\`\n`;
 			}

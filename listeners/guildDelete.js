@@ -16,16 +16,14 @@ class GuildDeleteListener extends Listener {
 
 		}, (err) => {
 			if(err) console.error(err);
-			console.log('I have been removed from a server!');
+			console.log(`Removed from a server with ${guild.memberCount} members.`);
 		});
 		// eslint-disable-next-line no-unused-vars
 		const crowns = await Crown.deleteMany({
 			guildID: guild.id,
 		}, (err) => {
 			if(err) console.error(err);
-			console.log('Crowns removed from server');
 		});
-		console.log(guild.memberCount);
 	}
 }
 
