@@ -221,7 +221,7 @@ module.exports.check = async () => {
 client.snipes = new Map();
 client.edits = new Map();
 
-process.on("unhandledRejection", async error => {
+/*process.on("unhandledRejection", async error => {
     const errorName = error.message;
 	const channelID = error.path?.slice(10, 28);
 	if (channelID !== undefined) {
@@ -233,6 +233,6 @@ process.on("unhandledRejection", async error => {
 			console.error(err);
 		}
 	}
-});
+});*/
 
 client.login(token);
