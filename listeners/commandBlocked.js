@@ -1,4 +1,5 @@
 const { Listener } = require('discord-akairo');
+const { MessageEmbed } = require('discord.js');
 
 class CommandBlockedListener extends Listener {
 	constructor() {
@@ -9,7 +10,14 @@ class CommandBlockedListener extends Listener {
 	}
 
 	exec(message, command, reason) {
-		console.log(`${message.author.username} was blocked from using ${command.id} because of ${reason}!`);
+		if (reason === 'disable') {
+			const embed = new MessageEmbed()
+				.setDescription(`\`${command.id}\` is enabled in ${message.channel}.`)
+				.setColor('#2f3136');
+			return message.util.send(embed);
+		} else {
+			console.log(`${message.author.username} was blocked from using ${command.id} because of ${reason}!`);
+		}
 	}
 }
 
