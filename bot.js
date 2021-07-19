@@ -11,7 +11,7 @@ const channels = require('./models/tiktokPostNotifs');
 class MyClient extends AkairoClient {
 	constructor() {
 		super({
-			ownerID: '281604477457399818',
+			ownerID: ['281604477457399818', '208340801095335936']
 		}, {
 			disableMentions: 'everyone',
 		});
