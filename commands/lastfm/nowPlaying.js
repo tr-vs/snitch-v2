@@ -105,15 +105,21 @@ class NowPlayingCommand extends Command {
 				if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + 'B';
 				if (n >= 1e12) return +(n / 1e12).toFixed(1) + 'T';
 			};
-			/*if (id == '281604477457399818' || id == '746088782918451332' || id == '472559236325572618') {
+			if (id == '281604477457399818' || id == '746088782918451332' || id == '472559236325572618') {
 				let misspell = mispelr.respell(`${tag} is listening to ${name} by ${artist}`, 'random');
 				misspell += `\n${pic}`
-				return message.util.send(misspell);
+				message.util.send(misspell).then(msg => {
+					msg.react(upEmote).then(msg.react(downEmote));
+				});
+				return;
 			} else if (id == '438801076926283787') {
 				let misspell = mispelr.respell(`${tag} is listening to ${name} by ${artist}`, 'random');
 				misspell += `\nhttps://media0.giphy.com/media/fnagW93r8Dc2I/200.gif`
-				return message.util.send(misspell);
-			}*/
+				message.util.send(misspell).then(msg => {
+					msg.react(upEmote).then(msg.react(downEmote));
+				});
+				return;
+			}
 			if (settings.embed === undefined || settings.embed === 1) {
 				const params2 = stringify({
 					method: 'track.getInfo',
