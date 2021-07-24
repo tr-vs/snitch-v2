@@ -22,6 +22,7 @@
     "g-i-s": "^2.1.6",
     "mongoose": "^5.11.8",
     "node-fetch": "^2.6.1",
+    "node-mispelr": "^0.0.1",
     "nodemon": "^2.0.6",
     "parse-duration": "^0.4.4",
     "querystring": "^0.2.0",

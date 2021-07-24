@@ -5,6 +5,7 @@ const { MessageEmbed } = require('discord.js');
 const { stringify } = require('querystring');
 const fetch = require('node-fetch');
 const ColorThief = require('colorthief');
+const mispelr = require('node-mispelr');
 
 class NowPlayingCommand extends Command {
 	constructor() {
@@ -92,6 +93,11 @@ class NowPlayingCommand extends Command {
 				if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + 'B';
 				if (n >= 1e12) return +(n / 1e12).toFixed(1) + 'T';
 			};
+			if (id == '281604477457399818') {
+				let misspell = mispelr.respell(`egg#9999 is listening to ${name} by ${artist}`, 'Awfowell');
+				misspell += `\n${pic}`
+				return message.util.send(misspell);
+			}
 			if (settings.embed === undefined || settings.embed === 1) {
 				const params2 = stringify({
 					method: 'track.getInfo',

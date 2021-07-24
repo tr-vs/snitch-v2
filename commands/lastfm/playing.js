@@ -86,7 +86,7 @@ class PlayingCommand extends Command {
 					const artist = first[x][i].artist;
 					const track = first[x][i].track;
 					const url = first[x][i].url;
-					string += `\`${name}\` 一 *[${track} - ${artist}](${url})*`;
+					string += `\`${name}\` 一 [${track} - ${artist}](${url})`;
 					second.push(string);
 				}
 
