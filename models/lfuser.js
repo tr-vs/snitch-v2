@@ -6,6 +6,8 @@ const userSchema = mongoose.Schema({
 	user: String,
 	alias: String,
 	embed: Number,
+	downEmote: String,
+	upEmote: String
 });
 
 module.exports = mongoose.model('LastFMUser', userSchema, 'lastfmUsers');

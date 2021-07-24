@@ -9,13 +9,13 @@ class EmoteCommand extends Command {
 			aliases: ['emote', 'e'],
 			category: 'util',
 			description : {
-				content : 'Enlarge an emote to save it if you\'re on mobile.',
+				content : 'Enlarge an emote.',
 				usage : ['emote [emote]', 'e [emote]'],
 			},
 			args: [
 				{
 					id: 'emoji',
-					type: 'content',
+					match: 'content',
 					prompt: {
 						timeout: () => {
 							const embed = new MessageEmbed().setDescription('`Time ran out, command has been cancelled.`').setColor('2f3136');

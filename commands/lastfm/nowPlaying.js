@@ -45,6 +45,18 @@ class NowPlayingCommand extends Command {
 		});
 		const tag = userOBJ.tag;
 		const authorAv = userOBJ.displayAvatarURL({ dynamic: true, size: 256 });
+		let downEmote = '';
+		let upEmote = '';
+		if (settings.downEmote === undefined) {
+			downEmote = '749536550261358613'
+		} else {
+			downEmote = settings.downEmote
+		}
+		if (settings.upEmote === undefined) {
+			upEmote = '775156840652603412'
+		} else {
+			upEmote = settings.upEmote
+		}
 		if (settings == null) {
 			const embed = new MessageEmbed()
 				.setDescription('`No connected Last.FM account found.`')
@@ -93,11 +105,15 @@ class NowPlayingCommand extends Command {
 				if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + 'B';
 				if (n >= 1e12) return +(n / 1e12).toFixed(1) + 'T';
 			};
-			if (id == '281604477457399818') {
-				let misspell = mispelr.respell(`egg#9999 is listening to ${name} by ${artist}`, 'Awfowell');
+			/*if (id == '281604477457399818' || id == '746088782918451332' || id == '472559236325572618') {
+				let misspell = mispelr.respell(`${tag} is listening to ${name} by ${artist}`, 'random');
 				misspell += `\n${pic}`
 				return message.util.send(misspell);
-			}
+			} else if (id == '438801076926283787') {
+				let misspell = mispelr.respell(`${tag} is listening to ${name} by ${artist}`, 'random');
+				misspell += `\nhttps://media0.giphy.com/media/fnagW93r8Dc2I/200.gif`
+				return message.util.send(misspell);
+			}*/
 			if (settings.embed === undefined || settings.embed === 1) {
 				const params2 = stringify({
 					method: 'track.getInfo',
@@ -120,7 +136,7 @@ class NowPlayingCommand extends Command {
 						.setThumbnail(pic)
 						.setColor('#2f3136');
 					message.util.send(embed).then(msg => {
-						msg.react('<:goodjob:775156840652603412>').then(msg.react('<:badjob:749536550261358613>'));
+						msg.react(upEmote).then(msg.react(downEmote));
 					});
 					return;
 
@@ -136,7 +152,7 @@ class NowPlayingCommand extends Command {
 					.setColor('#2f3136')
 					.setFooter(`Album: ${album} | Playcount: ${playCount}`);
 				message.util.send(embed).then(msg => {
-					msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					msg.react(upEmote).then(msg.react(downEmote));
 				});
 			}
 			if (settings.embed === 2) {
@@ -161,7 +177,7 @@ class NowPlayingCommand extends Command {
 					.setColor(message.member.displayHexColor);
 				if (pfp !== '') embed.setThumbnail(pfp.slice(0, -4) + '.gif');
 				message.util.send(embed).then(msg => {
-					msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					msg.react(upEmote).then(msg.react(downEmote));
 				});
 			}
 			if (settings.embed === 3) {
@@ -191,7 +207,7 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+						msg.react(upEmote).then(msg.react(downEmote));
 					});
 					return;
 				}
@@ -202,7 +218,7 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+						msg.react(upEmote).then(msg.react(downEmote));
 					});
 					return;
 				}
@@ -215,7 +231,7 @@ class NowPlayingCommand extends Command {
 					.setColor(color)
 					.setThumbnail(pic);
 				message.util.send(embed).then(msg => {
-					msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					msg.react(upEmote).then(msg.react(downEmote));
 				});
 			}
 			if (settings.embed === 4) {
@@ -237,7 +253,7 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+						msg.react(upEmote).then(msg.react(downEmote));
 					});
 					return;
 				}
@@ -251,7 +267,7 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react('775156840652603412').then(msg.react('749536550261358613'));
+						msg.react(upEmote).then(msg.react(downEmote));
 					});
 					return;
 				}
@@ -263,7 +279,7 @@ class NowPlayingCommand extends Command {
 					.setColor(color)
 					.setThumbnail(pic);
 				message.util.send(embed).then(msg => {
-					msg.react('775156840652603412').then(msg.react('749536550261358613'));
+					msg.react(upEmote).then(msg.react(downEmote));
 				});
 			}
 		}));
