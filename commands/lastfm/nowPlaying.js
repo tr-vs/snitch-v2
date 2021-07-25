@@ -47,6 +47,12 @@ class NowPlayingCommand extends Command {
 		const authorAv = userOBJ.displayAvatarURL({ dynamic: true, size: 256 });
 		let downEmote = '';
 		let upEmote = '';
+		if (settings == null) {
+			const embed = new MessageEmbed()
+				.setDescription('`No connected Last.FM account found.`')
+				.setColor('#2f3136');
+			return message.util.send(embed);
+		}
 		if (settings.downEmote === undefined) {
 			downEmote = '749536550261358613'
 		} else {
@@ -56,12 +62,6 @@ class NowPlayingCommand extends Command {
 			upEmote = '775156840652603412'
 		} else {
 			upEmote = settings.upEmote
-		}
-		if (settings == null) {
-			const embed = new MessageEmbed()
-				.setDescription('`No connected Last.FM account found.`')
-				.setColor('#2f3136');
-			return message.util.send(embed);
 		}
 		const params = stringify({
 			method: 'user.getrecenttracks',
