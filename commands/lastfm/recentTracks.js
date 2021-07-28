@@ -10,7 +10,7 @@ class RecentTracksCommand extends Command {
 			description: {
 				content: 'Show the last 10 songs you listened to.',
 				usage: ['lastfm recenttracks', 'rt'],
-				aliases: ['recemttracks', 'rt', 'recent'],
+				aliases: ['recenttracks', 'rt', 'recent'],
 			},
 			args: [
 				{
