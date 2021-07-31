@@ -12,7 +12,7 @@ class SnipeCommand extends Command {
 				content : 'Disable a command in the channel for **everyone**.',
 				usage : ['disable [command]'],
 			},
-            userPermissions: 'ADMINISTRATOR',
+            userPermissions: 'BAN_MEMBERS',
 			args: [
 				{
 					id: 'command',
@@ -53,7 +53,6 @@ class SnipeCommand extends Command {
 	async exec(message, args) {
 		const command = args.command.command
 
-
 		const settings = await Disables.findOne({
 			channelID: message.channel.id,
             commandID: command.id
@@ -63,8 +62,8 @@ class SnipeCommand extends Command {
 				const newDisable = new Disables({
 					_id: mongoose.Types.ObjectId(),
 					commandID: command.id,
-                    channelID: message.channel.id
-
+                    channelID: message.channel.id,
+					guildID: message.guild.id
 				});
 
 				newDisable.save().catch(err => console.error(err));

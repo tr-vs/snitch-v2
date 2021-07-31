@@ -12,7 +12,7 @@ class CommandBlockedListener extends Listener {
 	exec(message, command, reason) {
 		if (reason === 'disable') {
 			const embed = new MessageEmbed()
-				.setDescription(`\`${command.id}\` is enabled in ${message.channel}.`)
+				.setDescription(`\`${command.id}\` is disabled in ${message.channel}.`)
 				.setColor('#2f3136');
 			return message.util.send(embed);
 		} else {
