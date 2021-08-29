@@ -105,7 +105,7 @@ class NowPlayingCommand extends Command {
 				if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + 'B';
 				if (n >= 1e12) return +(n / 1e12).toFixed(1) + 'T';
 			};
-			if (id == '281604477457399818' || id == '746088782918451332' || id == '472559236325572618') {
+			if (id == '281604477457399818' || id == '472559236325572618') {
 				let misspell = mispelr.respell(`${tag} is listening to ${name} by ${artist}`, 'random');
 				misspell += `\n${pic}`
 				message.util.send(misspell).then(msg => {
