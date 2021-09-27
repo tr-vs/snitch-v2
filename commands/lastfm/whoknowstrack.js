@@ -71,12 +71,8 @@ class WhoKnowsTrackCommand extends Command {
 					return message.util.send(embed);
 				}
 				const tracks = data.recenttracks.track[0];
-				if (tracks['@attr'] && tracks['@attr'].nowplaying) {
-					track = tracks.name;
-					artist = tracks.artist['#text'];
-				} else {
-					return message.reply('You are not listening to anything at the moment.');
-				}
+				track = tracks.name;
+				artist = tracks.artist['#text'];
 			}
 		} else {
 			const params3 = stringify({

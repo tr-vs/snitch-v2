@@ -71,12 +71,8 @@ class WhoKnowsAlbumCommand extends Command {
 					return message.util.send(embed);
 				}
 				const tracks = data.recenttracks.track[0];
-				if (tracks['@attr'] && tracks['@attr'].nowplaying) {
-					album = tracks.album['#text'];
-					artist = tracks.artist['#text'];
-				} else {
-					return message.reply('You are not listening to anything at the moment.');
-				}
+				album = tracks.album['#text'];
+				artist = tracks.artist['#text'];
 			}
 		} else {
 			const params3 = stringify({

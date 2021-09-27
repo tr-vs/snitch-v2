@@ -72,11 +72,7 @@ class WhoKnowsCommand extends Command {
 					return message.util.send(embed);
 				}
 				const artistname = data.recenttracks.track[0];
-				if (artistname['@attr'] && artistname['@attr'].nowplaying) {
-					artist = artistname.artist['#text'];
-				} else {
-					return message.reply('You are not listening to anything at the moment.');
-				}
+				artist = artistname.artist['#text'];
 			}
 		} else {
 			artist = args.artist;
@@ -141,7 +137,6 @@ class WhoKnowsCommand extends Command {
 			}
 		}
 		know1 = know1.sort((a, b) => parseInt(b.plays) - parseInt(a.plays));
-		console.log(know1);
 		const know = _.first(_.values(know1), 10);
 		const sorted = know[0];
 		let description = '';
