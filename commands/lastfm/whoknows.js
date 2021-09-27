@@ -113,7 +113,7 @@ class WhoKnowsCommand extends Command {
 		const data2 = promises.filter(p => p.status === 'fulfilled').map(p => p.value);
 		const fails = promises.filter(p => p.status === 'rejected').map(p => p.reason);
 		if (fails.length > 0) {
-			console.log(data2.length);
+			console.log(`${data2.length} - JSON error for artist: ${artist} in: ${message.guild.name}!!!!!!!!!!!`);
 		}
 		// eslint-disable-next-line no-shadow
 		for (let i = 0; i < data2.length; i++) {
@@ -141,6 +141,7 @@ class WhoKnowsCommand extends Command {
 			}
 		}
 		know1 = know1.sort((a, b) => parseInt(b.plays) - parseInt(a.plays));
+		console.log(know1);
 		const know = _.first(_.values(know1), 10);
 		const sorted = know[0];
 		let description = '';
