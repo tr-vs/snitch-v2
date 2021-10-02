@@ -56,7 +56,7 @@ class GhostPingCommand extends Command {
 				.setAuthor(`Ghost Ping from ${msg.author.tag}`, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
 				.setDescription(msg.content)
 				.setColor('#2f3136')
-				.setFooter(`Ghost ping ${args.gp} out of ${ghosts.length} from ${msg.guild.name}`, msg.guild.icon)
+				.setFooter(`Ghost ping ${args.gp} out of ${ghosts.length} from ${msg.guild.name}`, msg.guild.iconURL())
 			if (msg.image) embed.setImage(msg.image);
 			message.util.send(embed);
 		} else {
@@ -64,7 +64,7 @@ class GhostPingCommand extends Command {
 				.setAuthor(`Ghost Ping from ${msg.author.tag}`, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
 				.setDescription(`> ${msg.referenceContent}\n<@${msg.referenceAuthor.id}> ${msg.content}`)
 				.setColor('#2f3136')
-				.setFooter(`Ghost ping ${args.gp} out of ${ghosts.length} from ${msg.guild.name}`, msg.guild.icon)
+				.setFooter(`Ghost ping ${args.gp} out of ${ghosts.length} from ${msg.guild.name}`, msg.guild.iconURL())
 			if (msg.image) embed.setImage(msg.image);
 			if (msg.referenceImage) embed.setThumbnail(msg.referenceImage);
 			message.util.send(embed);
