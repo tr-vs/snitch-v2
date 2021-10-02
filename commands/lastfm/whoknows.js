@@ -107,9 +107,6 @@ class WhoKnowsCommand extends Command {
 
 		const promises = await Promise.allSettled(request.map(u => fetch(u).then(resp => resp.json())));
 		const data2 = promises.map(p => p.value);
-		if (fails.length > 0) {
-			console.log(`${data2.length} - JSON error for artist: ${artist} in: ${message.guild.name}!!!!!!!!!!!`);
-		}
 		// eslint-disable-next-line no-shadow
 		for (let i = 0; i < data2.length; i++) {
 			if (data2[i] == undefined || data2[i].artist == undefined || data2[i].artist.length == 0) {
