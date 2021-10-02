@@ -2,18 +2,18 @@ const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const Guild = require('../../models/guild');
 
-class SnipeCommand extends Command {
+class GhostPingCommand extends Command {
 	constructor() {
-		super('snipe', {
-			aliases: ['snipe', 's'],
+		super('ghostping', {
+			aliases: ['ghostping', 'gp'],
 			category: 'util',
 			description : {
-				content : 'View up to 3 recently deleted messages',
-				usage : ['snipe 1', 's 2'],
+				content : 'View up to 3 ghost pings from any mutual servers!',
+				usage : ['ghostping 1', 'gp 2'],
 			},
 			args: [
 				{
-					id: 'snipe',
+					id: 'gp',
 					default: 1,
 					type: 'integer',
 
@@ -35,44 +35,36 @@ class SnipeCommand extends Command {
 			return message.util.send(embed);
 		}
 
-		if (args.snipe > 3) {
+		if (args.gp > 3) {
 			const embed = new MessageEmbed()
-				.setDescription('`You can only snipe up to 3 messages back.`')
+				.setDescription('`You can only view the last 3 ghost pings! :/`')
 				.setColor('#2f3136');
 			return message.util.send(embed);
 		}
 
-		const snipes = this.client.snipes.get(message.channel.id) || [];
-		const msg = snipes[args.snipe - 1 || 0];	
-			
-		let footer = '';
+		const ghosts = this.client.ghosts.get(message.author.id) || [];
+		const msg = ghosts[args.gp - 1 || 0];	
 		
 		const embed2 = {
-			description: '`Nothing was deleted.`',
+			description: '`You have no ghost pings.`',
 			color: '2f3136',
 		};
 		if (!msg) return message.util.send({ embed: embed2 });
 		
-		if(msg.author.id == message.author.id) {
-			footer = `Snipe ${args.snipe} out of ${snipes.length} • You sniped yourself doofus`;
-		} else {
-			footer = `Snipe ${args.snipe} out of ${snipes.length}`;
-		}
-		
 		if (msg.reference === false) {
 			const embed = new MessageEmbed()
-				.setAuthor(`Deleted by ${msg.author.tag}`, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
+				.setAuthor(`Ghost Ping from ${msg.author.tag}`, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
 				.setDescription(msg.content)
 				.setColor('#2f3136')
-				.setFooter(footer)
+				.setFooter(`Ghost ping ${args.gp} out of ${ghosts.length} from ${msg.guild.name}`, msg.guild.icon)
 			if (msg.image) embed.setImage(msg.image);
 			message.util.send(embed);
 		} else {
 			const embed = new MessageEmbed()
-				.setAuthor(`Deleted by ${msg.author.tag}`, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
+				.setAuthor(`Ghost Ping from ${msg.author.tag}`, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
 				.setDescription(`> ${msg.referenceContent}\n<@${msg.referenceAuthor.id}> ${msg.content}`)
 				.setColor('#2f3136')
-				.setFooter(footer)
+				.setFooter(`Ghost ping ${args.gp} out of ${ghosts.length} from ${msg.guild.name}`, msg.guild.icon)
 			if (msg.image) embed.setImage(msg.image);
 			if (msg.referenceImage) embed.setThumbnail(msg.referenceImage);
 			message.util.send(embed);
@@ -80,4 +72,4 @@ class SnipeCommand extends Command {
 	}
 }
 
-module.exports = SnipeCommand;
+module.exports = GhostPingCommand;

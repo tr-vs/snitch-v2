@@ -241,6 +241,7 @@ module.exports.check = async () => {
 
 client.snipes = new Map();
 client.edits = new Map();
+client.ghosts = new Map();
 
 /*process.on("unhandledRejection", async error => {
     const errorName = error.message;
