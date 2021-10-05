@@ -49,7 +49,7 @@ class UDCommand extends Command {
 		});
 		// eslint-disable-next-line no-unused-vars
 		const result = await fetch(`https://api.urbandictionary.com/v0/define?${params}`).then(r=> r.json());
-		if(result?.list[0] == undefined) {
+		if(result?.list?.[0] == undefined) {
 			const embed2 = new MessageEmbed()
 				.setDescription('`No definition available for the term. :(`')
 				.setColor('#2f3136');
