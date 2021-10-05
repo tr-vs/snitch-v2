@@ -121,7 +121,8 @@ class WhoKnowsTrackCommand extends Command {
 		}
 		const promises = await Promise.allSettled(request.map(u => fetch(u).then(resp => resp.json())));
 		const data2 = promises.map(p => p.value);
-		if (data2[0].track == undefined) {
+		const data3= promises.filter(p => p.status === 'fulfilled').map(p => p.value);
+		if (data3[0].track == undefined) {
 			const embed = new MessageEmbed().setDescription('`Scrobbles have not been registered for this song yet.`').setColor('2f3136');
 			return message.util.send(embed);
 		}
