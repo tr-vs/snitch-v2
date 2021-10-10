@@ -127,7 +127,7 @@ class WhoKnowsCommand extends Command {
 			return message.reply(`No one listens to ${artist} here.`);
 		}
 		for (const element of data2) {
-			if (element.artist !== undefined) {
+			if (element?.artist !== undefined) {
 				artist = element.artist.name;
 				break;
 			}
