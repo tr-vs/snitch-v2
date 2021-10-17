@@ -5,7 +5,7 @@ class PrefixCommand extends Command {
 	constructor() {
 		super('prefix', {
 			aliases: ['prefix'],
-			category: 'Misc',
+			category: 'util',
 			userPermissions: 'ADMINISTRATOR',
 			args: [
 				{
@@ -46,7 +46,6 @@ class PrefixCommand extends Command {
 		const oldPrefix = this.client.settings.get(message.guild.id, 'prefix', '+');
 
 		await this.client.settings.set(message.guild.id, 'prefix', args.prefix);
-		console.log(this.client.settings);
 		return message.reply(`Prefix changed from ${oldPrefix} to ${args.prefix}`);
 	}
 }
