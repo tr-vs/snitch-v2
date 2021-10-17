@@ -19,9 +19,7 @@ class GuildCreateListener extends Listener {
 			sniperID: '1',
 		});
 
-		guilds.save()
-			.then(result => console.log(result))
-			.catch(err => console.error(err));
+		guilds.save().catch(err => console.error(err));
 
 		console.log(`Joined a new server with ${guild.memberCount} members`);
 	}

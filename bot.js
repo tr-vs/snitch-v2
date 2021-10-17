@@ -243,10 +243,10 @@ client.snipes = new Map();
 client.edits = new Map();
 client.ghosts = new Map();
 
-/*process.on("unhandledRejection", async error => {
+process.on("unhandledRejection", async error => {
     const errorName = error.message;
 	const channelID = error.path?.slice(10, 28);
-	if (channelID !== undefined) {
+	if (errorName !== "Missing Permissions" && channelID !== undefined) {
 		try {
 			const messages = await client.channels.cache.get(channelID).messages.fetch({ limit: 3 });
 	
@@ -255,6 +255,6 @@ client.ghosts = new Map();
 			console.error(err);
 		}
 	}
-});*/
+});
 
 client.login(token);
