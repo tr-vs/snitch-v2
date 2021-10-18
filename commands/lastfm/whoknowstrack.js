@@ -33,7 +33,7 @@ class WhoKnowsTrackCommand extends Command {
 		} catch (err) {
 			if (message.channel.type === 'dm') {
 				const embed = new MessageEmbed()
-					.setDescription('`You cannot run this command in my DMs...`')
+					.setDescription('`Dawg why u tryna dat in my DMs...`')
 					.setColor('#2f3136');
 				return message.util.send(embed);
 			}

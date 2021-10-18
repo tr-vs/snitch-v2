@@ -24,6 +24,13 @@ class SnipeCommand extends Command {
 	}
 
 	async exec(message, args) {
+		if (message.channel.type === 'dm') {
+			const embed = new MessageEmbed()
+				.setDescription('`Dawg why u tryna dat in my DMs...`')
+				.setColor('#2f3136');
+			return message.util.send(embed);
+		}
+		
 		const role = await Guild.findOne({
 			guildID: message.guild.id,
 		});
