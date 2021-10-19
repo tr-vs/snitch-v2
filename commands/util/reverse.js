@@ -51,9 +51,11 @@ class ReverseImageSearchCommand extends Command {
 
             const urls = $(url).attr('href');
             const titles = $(url).find('h3').text().trim().replace(/\s\s+/g, '');
-
-            titleList.push(titles);
-            urlList.push(urls);
+            console.log(titles);
+            if (urls !== "#" && !urls.startsWith('https://webcache.googleusercontent.com/search?q=cache') && !urls.startsWith('https://translate.google.com/translate')) {
+                titleList.push(titles);
+                urlList.push(urls);
+            }
         });
 
         $('.IsZvec').each((x, url) => {
@@ -76,7 +78,6 @@ class ReverseImageSearchCommand extends Command {
                 .setColor('2f3136');
             return message.util.send(embed);
         }
-
         const embed = new MessageEmbed()
             .setTitle('Reverse Image Search')
             .setThumbnail(args.image)
@@ -85,6 +86,7 @@ class ReverseImageSearchCommand extends Command {
             .setAuthor(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 256 }))
             .setColor('2f3136');
         finalArrow.forEach((arrow, i) => {
+            
             embed.addField(`${arrow}`, `**[${finalTitle[i]}](${finalURL[i]})**\n${finalDescription[i]}`);
         });
         message.util.send(embed);
