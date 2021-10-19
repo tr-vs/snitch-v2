@@ -8,7 +8,7 @@ class ClientPermsInhibitor extends Inhibitor {
     }
 
     async exec(message, command) {
-        if (!message.guild.me.permissionsIn(message.channel).has([`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`])) {
+        if (message.channel.type !== 'dm' && !message.guild.me.permissionsIn(message.channel).has([`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`])) {
             return true;
         } else {
             return false;
