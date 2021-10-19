@@ -35,7 +35,7 @@ class WhoKnowsCommand extends Command {
 		} catch (err) {
 			if (message.channel.type === 'dm') {
 				const embed = new MessageEmbed()
-					.setDescription('`Dawg why u tryna dat in my DMs...`')
+					.setDescription('`Dawg why u tryna send dat in my DMs...`')
 					.setColor('#2f3136');
 				return message.util.send(embed);
 			}
