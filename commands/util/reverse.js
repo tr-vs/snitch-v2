@@ -51,7 +51,6 @@ class ReverseImageSearchCommand extends Command {
 
             const urls = $(url).attr('href');
             const titles = $(url).find('h3').text().trim().replace(/\s\s+/g, '');
-            console.log(titles);
             if (urls !== "#" && !urls.startsWith('https://webcache.googleusercontent.com/search?q=cache') && !urls.startsWith('https://translate.google.com/translate')) {
                 titleList.push(titles);
                 urlList.push(urls);
