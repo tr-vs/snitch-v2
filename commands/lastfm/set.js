@@ -54,8 +54,8 @@ class SetCommand extends Command {
 					authorID: message.author.id,
 					user: args.user,
 					embed: 1,
-					emoteUp: '775156840652603412',
-					emoteDown: '749536550261358613'
+					downEmote: '775156840652603412',
+					upEmote: '749536550261358613'
 				});
 
 				lfu.save().catch(err => console.error(err));

@@ -109,7 +109,20 @@ class NowPlayingCommand extends Command {
 				let misspell = mispelr.respell(`${tag} is listening to ${name} by ${artist}`, 'random');
 				misspell += `\n${pic}`
 				message.util.send(misspell).then(msg => {
-					msg.react(upEmote).then(msg.react(downEmote));
+					msg.react(upEmote).catch(async err => {
+						msg.react('❌');
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+						return;
+					}).then(msg.react(downEmote).catch(async err => {
+						msg.react('❌');	
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+					}));
 				});
 				return;
 			} else if (id == '438801076926283787') {
@@ -120,6 +133,9 @@ class NowPlayingCommand extends Command {
 				});
 				return;
 			}
+
+			
+
 			if (settings.embed === undefined || settings.embed === 1) {
 				const params2 = stringify({
 					method: 'track.getInfo',
