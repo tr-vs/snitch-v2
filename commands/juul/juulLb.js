@@ -58,9 +58,9 @@ class JuulRecordCommand extends Command {
 				const userID = first[x][i].userID;
 				const amount = first[x][i].hits;
 				if (place < 10) {
-					string += `•「 **0${place}** 」一 ${emote} ${message.guild.members.cache.get(userID)} has **${amount}** hits`;
+					string += `•「 **0${place}** 」一 ${emote} <@${userID}> has **${amount}** hits`;
 				} else {
-					string += `•「 **${place}** 」一 ${emote} ${message.guild.members.cache.get(userID)} has **${amount}** hits`;
+					string += `•「 **${place}** 」一 ${emote} <@${userID}> has **${amount}** hits`;
 				}
 				if (amount > 0) {
 					second.push(string);
