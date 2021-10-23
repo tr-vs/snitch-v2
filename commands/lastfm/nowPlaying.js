@@ -129,7 +129,20 @@ class NowPlayingCommand extends Command {
 				let misspell = mispelr.respell(`${tag} is listening to ${name} by ${artist}`, 'random');
 				misspell += `\nhttps://media0.giphy.com/media/fnagW93r8Dc2I/200.gif`
 				message.util.send(misspell).then(msg => {
-					msg.react(upEmote).then(msg.react(downEmote));
+					msg.react(upEmote).catch(async err => {
+						msg.react('❌');
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+						return;
+					}).then(msg.react(downEmote).catch(async err => {
+						msg.react('❌');	
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+					}));
 				});
 				return;
 			}
@@ -158,7 +171,20 @@ class NowPlayingCommand extends Command {
 						.setThumbnail(pic)
 						.setColor('#2f3136');
 					message.util.send(embed).then(msg => {
-						msg.react(upEmote).then(msg.react(downEmote));
+						msg.react(upEmote).catch(async err => {
+							msg.react('❌');
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+							return;
+						}).then(msg.react(downEmote).catch(async err => {
+							msg.react('❌');	
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+						}));
 					});
 					return;
 
@@ -174,7 +200,20 @@ class NowPlayingCommand extends Command {
 					.setColor('#2f3136')
 					.setFooter(`Album: ${album} | Playcount: ${playCount}`);
 				message.util.send(embed).then(msg => {
-					msg.react(upEmote).then(msg.react(downEmote));
+					msg.react(upEmote).catch(async err => {
+						msg.react('❌');
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+						return;
+					}).then(msg.react(downEmote).catch(async err => {
+						msg.react('❌');	
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+					}));
 				});
 			}
 			if (settings.embed === 2) {
@@ -199,7 +238,20 @@ class NowPlayingCommand extends Command {
 					.setColor(message.member.displayHexColor);
 				if (pfp !== '') embed.setThumbnail(pfp.slice(0, -4) + '.gif');
 				message.util.send(embed).then(msg => {
-					msg.react(upEmote).then(msg.react(downEmote));
+					msg.react(upEmote).catch(async err => {
+						msg.react('❌');
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+						return;
+					}).then(msg.react(downEmote).catch(async err => {
+						msg.react('❌');	
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+					}));
 				});
 			}
 			if (settings.embed === 3) {
@@ -229,7 +281,20 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react(upEmote).then(msg.react(downEmote));
+						msg.react(upEmote).catch(async err => {
+							msg.react('❌');
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+							return;
+						}).then(msg.react(downEmote).catch(async err => {
+							msg.react('❌');	
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+						}));
 					});
 					return;
 				}
@@ -240,7 +305,20 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react(upEmote).then(msg.react(downEmote));
+						msg.react(upEmote).catch(async err => {
+							msg.react('❌');
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+							return;
+						}).then(msg.react(downEmote).catch(async err => {
+							msg.react('❌');	
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+						}));
 					});
 					return;
 				}
@@ -253,7 +331,20 @@ class NowPlayingCommand extends Command {
 					.setColor(color)
 					.setThumbnail(pic);
 				message.util.send(embed).then(msg => {
-					msg.react(upEmote).then(msg.react(downEmote));
+					msg.react(upEmote).catch(async err => {
+						msg.react('❌');
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+						return;
+					}).then(msg.react(downEmote).catch(async err => {
+						msg.react('❌');	
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+					}));
 				});
 			}
 			if (settings.embed === 4) {
@@ -275,7 +366,20 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react(upEmote).then(msg.react(downEmote));
+						msg.react(upEmote).catch(async err => {
+							msg.react('❌');
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+							return;
+						}).then(msg.react(downEmote).catch(async err => {
+							msg.react('❌');	
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+						}));
 					});
 					return;
 				}
@@ -289,7 +393,20 @@ class NowPlayingCommand extends Command {
 						.setColor(color)
 						.setThumbnail(pic);
 					message.util.send(embed).then(msg => {
-						msg.react(upEmote).then(msg.react(downEmote));
+						msg.react(upEmote).catch(async err => {
+							msg.react('❌');
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+							return;
+						}).then(msg.react(downEmote).catch(async err => {
+							msg.react('❌');	
+							await settings.updateOne({
+								upEmote: '775156840652603412',
+								downEmote: '749536550261358613'
+							});	
+						}));
 					});
 					return;
 				}
@@ -301,7 +418,20 @@ class NowPlayingCommand extends Command {
 					.setColor(color)
 					.setThumbnail(pic);
 				message.util.send(embed).then(msg => {
-					msg.react(upEmote).then(msg.react(downEmote));
+					msg.react(upEmote).catch(async err => {
+						msg.react('❌');
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+						return;
+					}).then(msg.react(downEmote).catch(async err => {
+						msg.react('❌');	
+						await settings.updateOne({
+							upEmote: '775156840652603412',
+							downEmote: '749536550261358613'
+						});	
+					}));
 				});
 			}
 		}));
