@@ -1,4 +1,10 @@
 # commands
+- [fun](#fun)
+  * [anime](#anime)
+  * [coinflip](#coinflip)
+  * [goesonline](#goesonline)
+
+
 
 ## fun
 
