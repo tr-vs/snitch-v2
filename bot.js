@@ -5,8 +5,8 @@ const PrefixModel = require('./models/prefix.js');
 const mongoose = require('mongoose');
 const { MessageEmbed } = require('discord.js');
 const parseDuration = require('parse-duration');
-const TikTokScraper = require('tiktok-scraper');
-const channels = require('./models/tiktokPostNotifs');
+//const TikTokScraper = require('tiktok-scraper');
+//const channels = require('./models/tiktokPostNotifs');
 
 class MyClient extends AkairoClient {
 	constructor() {
@@ -190,7 +190,7 @@ class MyClient extends AkairoClient {
 
 const client = new MyClient();
 
-module.exports.check = async () => {
+/*module.exports.check = async () => {
 	const list = await channels.find().lean();
 	list.forEach((element) => {
 
@@ -237,7 +237,7 @@ module.exports.check = async () => {
 		scraper();
 	});
 
-};
+};*/
 
 client.snipes = new Map();
 client.edits = new Map();
