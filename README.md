@@ -34,3 +34,4 @@
 
 ⪩ Examples: +goesonline [text], +go [text]
 ```
+![goesonline example](/assets/goesonline.png)
