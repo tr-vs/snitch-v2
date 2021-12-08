@@ -1,4 +1,10 @@
 # commands
+- [fun](#fun)
+  * [anime](#anime)
+  * [coinflip](#coinflip)
+  * [goesonline](#goesonline)
+
+
 
 ## fun
 
@@ -28,3 +34,4 @@
 
 ⪩ Examples: +goesonline [text], +go [text]
 ```
+![goesonline example](/assets/goesonline.png)
