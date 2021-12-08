@@ -1,4 +1,4 @@
-const { Command } = require('discord-akairo');
+/*const { Command } = require('discord-akairo');
 const util = require('util');
 // eslint-disable-next-line no-unused-vars
 const { MessageEmbed } = require('discord.js');
@@ -104,4 +104,4 @@ class EvalCommand extends Command {
 	}
 }
 
-module.exports = EvalCommand;
+module.exports = EvalCommand;*/
