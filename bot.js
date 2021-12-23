@@ -3,15 +3,13 @@ const { token, uri } = require('./config');
 const PrefixModel = require('./models/prefix.js');
 
 const mongoose = require('mongoose');
-const { MessageEmbed } = require('discord.js');
 const parseDuration = require('parse-duration');
-//const TikTokScraper = require('tiktok-scraper');
-//const channels = require('./models/tiktokPostNotifs');
 
 class MyClient extends AkairoClient {
 	constructor() {
 		super({
-			ownerID: ['281604477457399818', '208340801095335936']
+			ownerID: ['281604477457399818', '208340801095335936'],
+			shardCount: 'auto',
 		}, {
 			disableMentions: 'everyone',
 		});
