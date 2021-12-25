@@ -10,6 +10,10 @@ class MyClient extends AkairoClient {
 		super({
 			ownerID: ['281604477457399818', '208340801095335936'],
 			shardCount: 'auto',
+			messageCacheLifetime: 120,
+			messageSweepInterval: 60,
+			messageCacheMaxSize: 50,
+			messageEditHistoryMaxSize: 3
 		}, {
 			disableMentions: 'everyone',
 		});
