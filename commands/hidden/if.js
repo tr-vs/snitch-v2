@@ -10,6 +10,7 @@ class IfCommand extends Command {
 				usage: '[command]',
 			},
 			category: 'hide',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'USE_EXTERNAL_EMOJIS']
 		});
 	}
 

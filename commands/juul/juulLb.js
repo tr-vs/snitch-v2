@@ -11,6 +11,7 @@ class JuulRecordCommand extends Command {
 				aliases: ['leaderboard', 'lb'],
 			},
 			category: 'fun',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'MANAGE_MESSAGES', 'USE_EXTERNAL_EMOJIS']
 		});
 	}
 

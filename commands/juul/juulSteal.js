@@ -13,6 +13,7 @@ class JuulStealCommand extends Command {
 				aliases: ['steal'],
 			},
 			category: 'fun',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'CHANGE_NICKNAME', 'MANAGE_NICKNAMES']
 		});
 	}
 

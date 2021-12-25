@@ -12,6 +12,7 @@ class JuulFetchCommand extends Command {
 				aliases: ['fetch'],
 			},
 			category: 'fun',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'CHANGE_NICKNAME', 'MANAGE_NICKNAMES']
 		});
 	}
 

@@ -24,6 +24,7 @@ class ReverseImageSearchCommand extends Command {
 				},
             ],
             typing: true,
+            clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
         });
     }
 

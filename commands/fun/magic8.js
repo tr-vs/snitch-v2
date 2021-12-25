@@ -9,6 +9,7 @@ class BallCommand extends Command {
 				content : 'Ask the bot a random question with a yes or no answer!',
 				usage : ['magic8ball', '8ball'],
 			},
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

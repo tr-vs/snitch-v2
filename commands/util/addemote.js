@@ -33,6 +33,7 @@ class AddEmoteCommand extends Command {
                     },
                 },
             ],
+            clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'MANAGE_EMOJIS']
 		});
 	}
 

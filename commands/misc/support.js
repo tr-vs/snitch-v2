@@ -10,6 +10,7 @@ class SupportCommand extends Command {
 				content : 'If you have any questions, feel free to join the support server.',
 				usage : ['support'],
 			},
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

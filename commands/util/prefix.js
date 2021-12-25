@@ -38,6 +38,7 @@ class PrefixCommand extends Command {
 				content : 'Change the prefix for the bot.',
 				usage : ['prefix [prefix]'],
 			},
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

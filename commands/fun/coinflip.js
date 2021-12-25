@@ -10,7 +10,7 @@ class CoinFlipCommand extends Command {
 				content : 'Flip a coin.',
 				usage : ['coinflip', 'cf'],
 			},
-
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

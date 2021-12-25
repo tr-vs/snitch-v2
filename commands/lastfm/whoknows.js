@@ -26,6 +26,7 @@ class WhoKnowsCommand extends Command {
 			],
 			cooldown: 10000,
             ratelimit: 1,
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

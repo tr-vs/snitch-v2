@@ -17,6 +17,7 @@ class JuulBanCommand extends Command {
 					type: 'member',
 				},
 			],
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'USE_EXTERNAL_EMOJIS']
 		});
 	}
 

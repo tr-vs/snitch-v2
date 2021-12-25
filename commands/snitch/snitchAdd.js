@@ -21,6 +21,7 @@ class SnitchAddCommand extends Command {
 				},
 			],
 			category: 'util',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

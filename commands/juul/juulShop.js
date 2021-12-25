@@ -11,6 +11,7 @@ class JuulHitCommand extends Command {
 				aliases: ['shop'],
 			},
 			category: 'fun',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'USE_EXTERNAL_EMOJIS']
 		});
 	}
 

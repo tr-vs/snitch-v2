@@ -25,6 +25,7 @@ class TopTracksCommand extends Command {
 				},
 			],
 			category: 'Last FM',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

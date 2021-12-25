@@ -24,6 +24,7 @@ class LyricsCommand extends Command {
 			category: 'Last FM',
 			typing: true,
             cooldown: 30000,
+            clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

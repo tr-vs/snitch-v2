@@ -24,6 +24,7 @@ class NowPlayingCommand extends Command {
 			category: 'Last FM',
 			aliases: ['np'],
 			typing: true,
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'ADD_REACTIONS', 'USE_EXTERNAL_EMOJIS']
 		});
 	}
 

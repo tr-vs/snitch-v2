@@ -10,6 +10,7 @@ class InviteCommand extends Command {
 				content : 'Generate an invite link for the bot.',
 				usage : ['invite', 'inv'],
 			},
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

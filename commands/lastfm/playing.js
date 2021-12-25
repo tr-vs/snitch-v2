@@ -16,6 +16,7 @@ class PlayingCommand extends Command {
 			typing: true,
 			cooldown: 30000,
             ratelimit: 1,
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'ADD_REACTIONS', 'ADD_REACTIONS', 'MANAGE_MESSAGES']
 		});
 	}
 

@@ -18,7 +18,7 @@ class EditSnipeCommand extends Command {
 					type: 'integer',
 				},
 			],
-
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

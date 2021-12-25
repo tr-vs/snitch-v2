@@ -18,6 +18,7 @@ class HelpCommand extends Command {
 					match: 'content',
 				},
 			],
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

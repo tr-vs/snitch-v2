@@ -46,7 +46,7 @@ class SnipeCommand extends Command {
 
 				},
 			],
-
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

@@ -45,6 +45,7 @@ class RoleCommand extends Command {
 				content : 'Assign a role which restricts usage of utility commands to mods and those who have the assigned role.',
 				usage : ['role [role | role id]'],
 			},
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

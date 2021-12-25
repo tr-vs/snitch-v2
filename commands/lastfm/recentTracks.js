@@ -20,6 +20,7 @@ class RecentTracksCommand extends Command {
 			],
 			category: 'Last FM',
 			typing: true,
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

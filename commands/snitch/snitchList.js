@@ -11,6 +11,7 @@ class SnitchAddCommand extends Command {
 				aliases: ['list'],
 			},
 			category: 'util',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 

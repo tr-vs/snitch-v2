@@ -11,6 +11,7 @@ class JuulStatusCommand extends Command {
 				aliases: ['status'],
 			},
 			category: 'fun',
+			clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES']
 		});
 	}
 
