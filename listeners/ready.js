@@ -2,6 +2,8 @@
 const { Listener } = require('discord-akairo');
 const check = require('.././bot');
 const timestamp = require('../models/tiktokPostNotifs.js');
+const heapdump = require('heapdump');
+
 
 class ReadyListener extends Listener {
 	constructor() {
@@ -13,27 +15,19 @@ class ReadyListener extends Listener {
 
 	async exec() {
 		console.log('hi');
-
-		/* let i = 0;
+		
 		setInterval(() => {
-			const activities = [
-				`${this.client.guilds.cache.size} servers...`,
-				`${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} members...`,
-			];
-			this.client.user.setPresence({
-				status: 'dnd',
-				activity: {
-					name: `over ${activities[i++ % activities.length]}`,
-					type: 'WATCHING',
-				},
-			});
-		}, 10000);*/
-		/* await timestamp.updateMany({}, {
-            updateTime: Math.floor(Date.now() / 1000)
-        })
+			this.client.snipes.clear()
+			this.client.ghost.clear()
+			this.client.edits.clear()
+		}, 8.64e+7);
 
-        check.check()
-        setInterval(check.check, 300000);*/
+		setInterval(() => {
+			heapdump.writeSnapshot(function(err, filename) {
+				console.log('dump written to', filename);
+			});
+		}, 600000)
+
 		this.client.user.setPresence({
 			status: 'dnd',
 			activity: {
