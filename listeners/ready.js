@@ -20,13 +20,7 @@ class ReadyListener extends Listener {
 			this.client.snipes.clear()
 			this.client.ghost.clear()
 			this.client.edits.clear()
-		}, 8.64e+7);
-
-		setInterval(() => {
-			heapdump.writeSnapshot(function(err, filename) {
-				console.log('dump written to', filename);
-			});
-		}, 600000)
+		}, 2.16e+7);
 
 		this.client.user.setPresence({
 			status: 'dnd',
