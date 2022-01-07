@@ -2,7 +2,6 @@ const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const Crown = require('../../models/crowns.js');
 
-
 class CrownsCommand extends Command {
 	constructor() {
 		super('crowns', {
