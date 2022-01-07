@@ -9,13 +9,13 @@ class MyClient extends AkairoClient {
 	constructor() {
 		super({
 			ownerID: ['281604477457399818', '208340801095335936'],
-			shardCount: 'auto',
-			messageCacheLifetime: 120,
-			messageSweepInterval: 60,
-			messageCacheMaxSize: 50,
-			messageEditHistoryMaxSize: 3
 		}, {
 			disableMentions: 'everyone',
+			shards: 'auto',
+			messageCacheLifetime: 120,
+			messageSweepInterval: 60,
+			messageCacheMaxSize: 25,
+			messageEditHistoryMaxSize: 3
 		});
 		this.commandHandler = new CommandHandler(this, {
 			directory: './commands/',
@@ -29,6 +29,8 @@ class MyClient extends AkairoClient {
 			},
 			handleEdits: true,
 			commandUtil: true,
+			commandUtilLifetime: 3e5,
+          	commandUtilSweepInterval: 9e5,
 		});
 		this.commandHandler.resolver.addType('subcommand', (message, phrase) => {
 			if (!phrase) return null;
@@ -109,6 +111,27 @@ class MyClient extends AkairoClient {
 			}
 			if (user !== null && user !== undefined) {
 				return user.displayAvatarURL({ format: 'png', dynamic: true });
+			}
+			return null;
+		});
+		this.commandHandler.resolver.addType('image', async (message, phrase) => {
+			try {
+				await message.guild.members.fetch();
+			} catch (err) {
+				console.error(err);
+			}
+
+			const urlType = this.commandHandler.resolver.type('url');
+			const url = urlType(message, phrase);
+
+			const userType = this.commandHandler.resolver.type('user');
+			const user = userType(message, phrase);
+
+			if (message.attachments.first() !== undefined) {
+				return message.attachments.first().url;
+			}
+			if (url !== null) {
+				return url.href;
 			}
 			return null;
 		});
