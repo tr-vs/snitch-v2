@@ -18,7 +18,7 @@ class ReadyListener extends Listener {
 		
 		setInterval(() => {
 			this.client.snipes.clear()
-			this.client.ghost.clear()
+			this.client.ghosts.clear()
 			this.client.edits.clear()
 		}, 2.16e+7);
 
