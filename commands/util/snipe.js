@@ -1,6 +1,7 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const Guild = require('../../models/guild');
+const mongoose = require('mongoose');
 
 class SnipeCommand extends Command {
 	constructor() {
@@ -33,7 +34,29 @@ class SnipeCommand extends Command {
 		
 		const role = await Guild.findOne({
 			guildID: message.guild.id,
+		}, (err, guild) => {
+			if (err) console.error(err);
+			if (!guild) {
+				const newGuild = new Guild({
+					_id: mongoose.Types.ObjectId(),
+					guildID: message.guild.id,
+					guildName: message.guild.name,
+					sniperID: '1',
+				})
+
+				newGuild.save()
+				.catch(err => console.error(err))
+
+				const embed = new MessageEmbed()
+					.setDescription('`This server was not in my database. Please try again.`')
+					.setColor('#2f3136');
+				return message.util.send(embed);
+			}
 		});
+
+		if (role == null) {
+			return
+		}
 
 		if (role.sniperID != '1' && !message.member.roles.cache.has(role.sniperID) && !message.member.permissions.has('MANAGE_MESSAGES')) {
 			const embed = new MessageEmbed()
