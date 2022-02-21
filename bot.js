@@ -1,6 +1,7 @@
 const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, MongooseProvider } = require('discord-akairo');
 const { token, uri } = require('./config');
-const PrefixModel = require('./models/prefix.js');
+const mongo = require('./util/mongoose.js');
+const PrefixModel = require('./models/prefix')
 
 const mongoose = require('mongoose');
 const parseDuration = require('parse-duration');
@@ -11,7 +12,6 @@ class MyClient extends AkairoClient {
 			ownerID: ['281604477457399818', '208340801095335936'],
 		}, {
 			disableMentions: 'everyone',
-			shards: 'auto',
 			messageCacheLifetime: 120,
 			messageSweepInterval: 60,
 			messageCacheMaxSize: 25,
@@ -194,23 +194,15 @@ class MyClient extends AkairoClient {
 			listenerHandler: this.listenerHandler,
 		});
 		this.listenerHandler.loadAll();
-		mongoose.connect(uri, {
-			useUnifiedTopology: true,
-			useNewUrlParser: true,
-			useCreateIndex: true,
-		});
-		mongoose.connection.on('connected', () => {
-			console.log('DATABASE CONNECTED');
-		});
-		mongoose.connection.on('err', err => {
-			console.error(`${err.stack} MONGOOSE ERROR`);
-		});
-		mongoose.connection.on('disconnected', () => {
-			console.log('DATABASE DISCONNECTED');
-		});
 		this.settings = new MongooseProvider(PrefixModel);
-		this.settings.init();
 	}
+
+	async login(token) {
+		await mongo.init();
+		await this.settings.init();
+        return super.login(token);
+	}
+
 }
 
 const client = new MyClient();

@@ -11,10 +11,11 @@ module.exports = {
             poolSize: 5,
             connectTimeoutMS: 10000,
             family: 4,
+            useFindAndModify: false,
+            useCreateIndex: true,
         };
 
         mongoose.connect('mongodb+srv://egg:Missiontotheloot1Uzi@cluster0.tah2q.mongodb.net/Snitch?retryWrites=true&w=majority', dbOptions);
-        mongoose.set('useFindAndModify', false);
         mongoose.Promise = global.Promise;
 
         mongoose.connection.on('connected', () => {
